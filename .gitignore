@@ -1,0 +1,62 @@
+# =============================================================================
+# Python
+# =============================================================================
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg-info/
+dist/
+build/
+*.egg
+
+# =============================================================================
+# Virtual Environments
+# =============================================================================
+venv/
+env/
+.env/
+.venv/
+
+# =============================================================================
+# IDE & Editor
+# =============================================================================
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.settings/
+
+# =============================================================================
+# OS Generated
+# =============================================================================
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# =============================================================================
+# Project Specific
+# =============================================================================
+# Large model files (re-generate via train.py)
+models/*.h5
+models/*.pkl
+models/*.json
+models/*.keras
+
+# Log files (generated at runtime)
+logs/*.log
+
+# Captured traffic data (generated at runtime)
+outputs/captured.csv
+outputs/live_detection_results.csv
+
+# Jupyter checkpoints
+.ipynb_checkpoints/
+
+# =============================================================================
+# Data Files (too large for GitHub — download separately)
+# =============================================================================
+# Uncomment the line below if you do NOT want to push the dataset:
+# Data/*.csv

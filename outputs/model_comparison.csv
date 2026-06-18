@@ -1,0 +1,4 @@
+Model,accuracy,precision,recall,f1_score,roc_auc
+Autoencoder,0.4816,0.9938,0.2399,0.3865,0.7741
+XGBoost,0.898,0.9882,0.8604,0.9199,0.986
+Isolation Forest,0.3922,0.8522,0.1294,0.2247,0.5436

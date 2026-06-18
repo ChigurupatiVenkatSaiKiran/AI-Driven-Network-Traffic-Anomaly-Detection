@@ -1,0 +1,253 @@
+/*
+ * dashboard/style.css — Premium Streamlit Dashboard Styling
+ * ==========================================================
+ * Custom CSS for a professional, modern dark-mode dashboard
+ * with glassmorphism, gradient accents, and smooth animations.
+ */
+
+/* ── Google Fonts ──────────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+/* ── Root Variables ────────────────────────────────────────────────── */
+:root {
+    --bg-primary:     #0e1117;
+    --bg-secondary:   #1a1d24;
+    --bg-card:        rgba(26, 29, 36, 0.85);
+    --bg-card-hover:  rgba(40, 44, 55, 0.9);
+    --border-color:   rgba(255, 255, 255, 0.06);
+    --text-primary:   #e6edf3;
+    --text-secondary: #8b949e;
+    --accent-blue:    #58a6ff;
+    --accent-green:   #3fb950;
+    --accent-red:     #f85149;
+    --accent-orange:  #d29922;
+    --accent-purple:  #bc8cff;
+    --accent-cyan:    #39d2c0;
+    --gradient-1:     linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --gradient-2:     linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    --gradient-3:     linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    --gradient-4:     linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+    --shadow-sm:      0 2px 8px rgba(0, 0, 0, 0.3);
+    --shadow-md:      0 4px 16px rgba(0, 0, 0, 0.4);
+    --shadow-lg:      0 8px 32px rgba(0, 0, 0, 0.5);
+    --radius:         12px;
+    --radius-sm:      8px;
+}
+
+/* ── Global Styles ─────────────────────────────────────────────────── */
+html, body, [class*="css"] {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+}
+
+.stApp {
+    background: var(--bg-primary) !important;
+}
+
+/* ── Sidebar ───────────────────────────────────────────────────────── */
+[data-testid="stSidebar"] {
+    background: linear-gradient(180deg, #12151c 0%, #1a1d24 100%) !important;
+    border-right: 1px solid var(--border-color) !important;
+}
+
+[data-testid="stSidebar"] .stRadio > label {
+    color: var(--text-primary) !important;
+    font-weight: 600 !important;
+    font-size: 0.9rem !important;
+}
+
+/* ── KPI Metric Cards ──────────────────────────────────────────────── */
+.kpi-card {
+    background: var(--bg-card);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    text-align: center;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: var(--shadow-sm);
+}
+
+.kpi-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+    border-color: rgba(88, 166, 255, 0.3);
+}
+
+.kpi-value {
+    font-size: 2.2rem;
+    font-weight: 800;
+    background: var(--gradient-3);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    line-height: 1.2;
+}
+
+.kpi-label {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 0.5rem;
+    font-weight: 500;
+}
+
+/* ── Section Headers ───────────────────────────────────────────────── */
+.section-header {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid;
+    border-image: var(--gradient-1) 1;
+}
+
+.section-subheader {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+    font-weight: 400;
+}
+
+/* ── Data Cards ────────────────────────────────────────────────────── */
+.data-card {
+    background: var(--bg-card);
+    backdrop-filter: blur(16px);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    padding: 1.25rem;
+    margin-bottom: 1rem;
+    box-shadow: var(--shadow-sm);
+}
+
+/* ── Status Badges ─────────────────────────────────────────────────── */
+.badge-normal {
+    background: rgba(63, 185, 80, 0.15);
+    color: var(--accent-green);
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    display: inline-block;
+}
+
+.badge-anomaly {
+    background: rgba(248, 81, 73, 0.15);
+    color: var(--accent-red);
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    display: inline-block;
+}
+
+.badge-warning {
+    background: rgba(210, 153, 34, 0.15);
+    color: var(--accent-orange);
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    display: inline-block;
+}
+
+/* ── Alert Cards ───────────────────────────────────────────────────── */
+.alert-critical {
+    background: rgba(248, 81, 73, 0.08);
+    border-left: 4px solid var(--accent-red);
+    border-radius: var(--radius-sm);
+    padding: 1rem 1.25rem;
+    margin: 0.5rem 0;
+}
+
+.alert-warning {
+    background: rgba(210, 153, 34, 0.08);
+    border-left: 4px solid var(--accent-orange);
+    border-radius: var(--radius-sm);
+    padding: 1rem 1.25rem;
+    margin: 0.5rem 0;
+}
+
+.alert-info {
+    background: rgba(88, 166, 255, 0.08);
+    border-left: 4px solid var(--accent-blue);
+    border-radius: var(--radius-sm);
+    padding: 1rem 1.25rem;
+    margin: 0.5rem 0;
+}
+
+.alert-success {
+    background: rgba(63, 185, 80, 0.08);
+    border-left: 4px solid var(--accent-green);
+    border-radius: var(--radius-sm);
+    padding: 1rem 1.25rem;
+    margin: 0.5rem 0;
+}
+
+/* ── Streamlit Component Overrides ─────────────────────────────────── */
+.stMetric {
+    background: var(--bg-card) !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: var(--radius) !important;
+    padding: 1rem !important;
+}
+
+div[data-testid="stMetricValue"] {
+    font-weight: 700 !important;
+}
+
+/* ── Plotly Chart Container ────────────────────────────────────────── */
+.js-plotly-plot {
+    border-radius: var(--radius) !important;
+    overflow: hidden !important;
+}
+
+/* ── Tables ────────────────────────────────────────────────────────── */
+.stDataFrame {
+    border-radius: var(--radius) !important;
+    overflow: hidden !important;
+}
+
+/* ── Animations ────────────────────────────────────────────────────── */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.6; }
+}
+
+.animate-in {
+    animation: fadeInUp 0.5s ease-out forwards;
+}
+
+.pulse {
+    animation: pulse 2s infinite;
+}
+
+/* ── Scrollbar ─────────────────────────────────────────────────────── */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+    background: #30363d;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #484f58;
+}
