@@ -114,41 +114,57 @@ def run_eda(train_df: pd.DataFrame, test_df: pd.DataFrame) -> None:
 
 def build_autoencoder(input_dim: int) -> keras.Model:
     """
-    Build a Deep Autoencoder with Batch Normalisation and Dropout.
+    Build a Deep Denoising Autoencoder with Batch Normalisation.
 
-    Architecture
-    ------------
-    Encoder:  input_dim → 64 → 32 → 16  (bottleneck)
-    Decoder:  16 → 32 → 64 → input_dim
+    Architecture (Bottleneck = 8 — highly compressive)
+    ----------------------------------------------------
+    Encoder:  input_dim → 128 → 64 → 32 → 8  (bottleneck)
+    Decoder:  8 → 32 → 64 → 128 → input_dim
 
-    Each hidden layer uses:
-        - Dense → BatchNorm → ReLU → Dropout(0.2)
-
-    The output layer uses sigmoid activation (data is scaled 0–1 range
-    after StandardScaler + MinMax normalisation).
+    Key design choices:
+    - LeakyReLU(0.1) avoids dead neurons (better than plain ReLU for deep AE)
+    - BatchNorm after each Dense for training stability
+    - L1 activity regularisation on bottleneck forces a SPARSE representation
+      so only the most normal patterns are encoded; anomalies break this.
+    - Minimal dropout (0.05) — denoising provides implicit regularisation
+    - Sigmoid output maps to [0, 1] (data is MinMax-scaled)
     """
+    from tensorflow.keras import regularizers
+
     # ── Encoder ──────────────────────────────────────────────────────────
     inputs = keras.Input(shape=(input_dim,), name="encoder_input")
     x = inputs
 
-    for idx, units in enumerate(Config.AE_ENCODING_DIMS):
+    for idx, units in enumerate(Config.AE_ENCODING_DIMS[:-1]):
         x = layers.Dense(units, name=f"encoder_dense_{idx}")(x)
         x = layers.BatchNormalization(name=f"encoder_bn_{idx}")(x)
-        x = layers.Activation(Config.AE_ACTIVATION, name=f"encoder_act_{idx}")(x)
-        x = layers.Dropout(Config.AE_DROPOUT, name=f"encoder_drop_{idx}")(x)
+        x = layers.LeakyReLU(0.1, name=f"encoder_act_{idx}")(x)
+        if Config.AE_DROPOUT > 0:
+            x = layers.Dropout(Config.AE_DROPOUT, name=f"encoder_drop_{idx}")(x)
+
+    # Bottleneck with L1 activity regulariser — key for anomaly separation
+    bottleneck_units = Config.AE_ENCODING_DIMS[-1]
+    x = layers.Dense(
+        bottleneck_units,
+        activity_regularizer=regularizers.l1(1e-5),
+        name="bottleneck",
+    )(x)
+    x = layers.BatchNormalization(name="bottleneck_bn")(x)
+    x = layers.LeakyReLU(0.1, name="bottleneck_act")(x)
 
     # ── Decoder ──────────────────────────────────────────────────────────
     for idx, units in enumerate(Config.AE_DECODING_DIMS):
         x = layers.Dense(units, name=f"decoder_dense_{idx}")(x)
         x = layers.BatchNormalization(name=f"decoder_bn_{idx}")(x)
-        x = layers.Activation(Config.AE_ACTIVATION, name=f"decoder_act_{idx}")(x)
-        x = layers.Dropout(Config.AE_DROPOUT, name=f"decoder_drop_{idx}")(x)
+        x = layers.LeakyReLU(0.1, name=f"decoder_act_{idx}")(x)
+        if Config.AE_DROPOUT > 0:
+            x = layers.Dropout(Config.AE_DROPOUT, name=f"decoder_drop_{idx}")(x)
 
     # ── Output ───────────────────────────────────────────────────────────
     outputs = layers.Dense(input_dim, activation=Config.AE_OUTPUT_ACT,
                            name="decoder_output")(x)
 
-    model = keras.Model(inputs, outputs, name="DeepAutoencoder")
+    model = keras.Model(inputs, outputs, name="DenoisingAutoencoder")
     return model
 
 
@@ -228,11 +244,28 @@ def train_autoencoder(
     val_normal_mask = (y_val == 0)
     X_ae_val_normal = X_val[val_normal_mask]
 
-    logger.info("Training on %d normal samples (val: %d normal) …",
+    logger.info("Training on %d normal samples (val: %d normal) ...",
                 len(X_train_normal), len(X_ae_val_normal))
+
+    # ── Denoising: train on NOISY input, reconstruct CLEAN target ────────
+    # Adding Gaussian noise to input forces the AE to learn robust
+    # representations. Normal traffic denoises well; anomalies do not.
+    noise_factor = Config.AE_NOISE_FACTOR
+    if noise_factor > 0:
+        X_train_noisy = X_train_normal + noise_factor * np.random.normal(
+            size=X_train_normal.shape).astype(np.float32)
+        X_train_noisy = np.clip(X_train_noisy, 0.0, 1.0)
+        X_val_noisy   = X_ae_val_normal + noise_factor * np.random.normal(
+            size=X_ae_val_normal.shape).astype(np.float32)
+        X_val_noisy   = np.clip(X_val_noisy, 0.0, 1.0)
+        logger.info("Denoising AE: noise_factor=%.3f applied", noise_factor)
+    else:
+        X_train_noisy = X_train_normal
+        X_val_noisy   = X_ae_val_normal
+
     history = model.fit(
-        X_train_normal, X_train_normal,
-        validation_data=(X_ae_val_normal, X_ae_val_normal),
+        X_train_noisy, X_train_normal,          # noisy input → clean target
+        validation_data=(X_val_noisy, X_ae_val_normal),
         epochs=Config.AE_EPOCHS,
         batch_size=Config.AE_BATCH_SIZE,
         callbacks=cb_list,
@@ -393,6 +426,7 @@ def train_xgboost(
 
 def train_isolation_forest(
     X_train: np.ndarray,
+    y_train: np.ndarray,
     X_test: np.ndarray,
     y_test: np.ndarray,
 ) -> Tuple[IsolationForest, Dict]:
@@ -425,9 +459,15 @@ def train_isolation_forest(
         n_jobs=-1,
     )
 
-    logger.info("Fitting Isolation Forest on %d samples (contamination=%.2f) …",
-                len(X_train), Config.IF_CONTAMINATION)
-    model.fit(X_train)
+    # CRITICAL FIX: train Isolation Forest on NORMAL-ONLY data.
+    # When trained on mixed (normal+anomaly) data the IF has ROC-AUC ~0.52
+    # (essentially random) because it cannot distinguish the two classes.
+    # Trained on normal-only, it learns the normal manifold; anomalies that
+    # do NOT fit this manifold get high anomaly scores.
+    X_train_normal = X_train[y_train == 0]
+    logger.info("Fitting Isolation Forest on %d normal training samples (contamination=%.2f) ...",
+                len(X_train_normal), Config.IF_CONTAMINATION)
+    model.fit(X_train_normal)
 
     # Save model
     joblib.dump(model, Config.IFOREST_MODEL)
@@ -565,7 +605,7 @@ def main() -> None:
 
     # ── Step 7: Train Isolation Forest ───────────────────────────────────
     if_model, if_metrics = train_isolation_forest(
-        X_train_np, X_test_np, y_test_np,
+        X_train_np, y_train_np, X_test_np, y_test_np,
     )
     if_scores_raw = if_model.decision_function(X_test_np)
     if_scores = -if_scores_raw

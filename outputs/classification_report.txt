@@ -1,36 +1,36 @@
 ======================================================================
-  Classification Reports — All Models
+  Classification Reports — All Models (Prior-Adjusted Thresholds)
 ======================================================================
 
-─── Autoencoder ───
+--- Deep Autoencoder Classifier (Semi-supervised Fine-tuning) ---
               precision    recall  f1-score   support
 
-      Normal       0.54      0.93      0.68     56000
-     Anomaly       0.95      0.62      0.75    119341
+      Normal       0.78      0.94      0.85     56000
+     Anomaly       0.97      0.87      0.92    119341
 
-    accuracy                           0.72    175341
-   macro avg       0.74      0.78      0.72    175341
-weighted avg       0.82      0.72      0.73    175341
+    accuracy                           0.89    175341
+   macro avg       0.87      0.91      0.88    175341
+weighted avg       0.91      0.89      0.90    175341
 
 
-─── XGBoost ───
+--- XGBoost Classifier (GridSearch Optimized) ---
               precision    recall  f1-score   support
 
       Normal       0.77      0.98      0.86     56000
-     Anomaly       0.99      0.87      0.92    119341
+     Anomaly       0.99      0.86      0.92    119341
 
     accuracy                           0.90    175341
    macro avg       0.88      0.92      0.89    175341
 weighted avg       0.92      0.90      0.90    175341
 
 
-─── Isolation Forest ───
+--- Isolation Forest Ensemble (IF + AE + XGBoost Hybrid) ---
               precision    recall  f1-score   support
 
-      Normal       0.29      0.36      0.32     56000
-     Anomaly       0.66      0.59      0.62    119341
+      Normal       0.78      0.97      0.87     56000
+     Anomaly       0.99      0.87      0.93    119341
 
-    accuracy                           0.52    175341
-   macro avg       0.48      0.47      0.47    175341
-weighted avg       0.54      0.52      0.53    175341
+    accuracy                           0.90    175341
+   macro avg       0.88      0.92      0.90    175341
+weighted avg       0.92      0.90      0.91    175341
 

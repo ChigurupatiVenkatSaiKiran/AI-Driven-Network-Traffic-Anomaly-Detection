@@ -75,16 +75,22 @@ class Config:
     FEATURE_COLS_PATH = MODELS_DIR / "feature_columns.json"
 
     # ── Autoencoder Hyper-parameters ─────────────────────────────────────
-    AE_ENCODING_DIMS = [128, 64, 32]         # encoder layers  (→ bottleneck 32)
-    AE_DECODING_DIMS = [64, 128]             # decoder layers (mirror encoder)
-    AE_ACTIVATION    = "relu"
+    # Encoder: 39 → 128 → 64 → 32 → 8  (bottleneck=8, high compression)
+    # Decoder: 8  → 32 → 64 → 128 → 39
+    # A bottleneck of 8 out of 39 features is essential: it forces the model
+    # to learn a compact "normal" subspace.  Anomaly traffic cannot compress
+    # into this subspace, producing high reconstruction error.
+    AE_ENCODING_DIMS = [128, 64, 32, 8]      # encoder layers (→ bottleneck 8)
+    AE_DECODING_DIMS = [32, 64, 128]         # decoder layers (mirror encoder)
+    AE_ACTIVATION    = "leaky_relu"          # LeakyReLU avoids dead neurons
     AE_OUTPUT_ACT    = "sigmoid"
-    AE_DROPOUT       = 0.1                   # reduced: less regularisation for better recall
-    AE_LEARNING_RATE = 5e-4                  # lower LR: more stable convergence
-    AE_EPOCHS        = 150                   # more epochs with early stopping guard
-    AE_BATCH_SIZE    = 512                   # larger batch: smoother gradients
-    AE_PATIENCE      = 15                    # give the model more time to converge
-    AE_THRESHOLD_PERCENTILE = 95             # percentile of normal-only errors (replaces mean+N×std)
+    AE_DROPOUT       = 0.05                  # minimal regularisation
+    AE_LEARNING_RATE = 5e-4
+    AE_EPOCHS        = 150
+    AE_BATCH_SIZE    = 512
+    AE_PATIENCE      = 20                    # patient early stopping
+    AE_THRESHOLD_PERCENTILE = 95             # P95 of normal-only train errors
+    AE_NOISE_FACTOR  = 0.05                  # denoising: Gaussian noise std on input
 
     # ── XGBoost Hyper-parameters (wider grid for better optimum) ─────────
     XGB_N_ESTIMATORS = [200, 300, 500]
@@ -96,9 +102,12 @@ class Config:
     XGB_SCALE_POS    = None                  # set dynamically from class ratio
 
     # ── Isolation Forest Hyper-parameters ────────────────────────────────
-    IF_N_ESTIMATORS    = 300
-    IF_CONTAMINATION   = 0.45                # sklearn max is 0.5; set high to match anomaly-heavy dataset
-    IF_MAX_SAMPLES     = 0.8
+    # Train on NORMAL-ONLY data so IF learns what "normal" looks like.
+    # contamination=0.05 means we accept up to 5% of normal samples may
+    # look slightly unusual (safe margin).
+    IF_N_ESTIMATORS    = 500
+    IF_CONTAMINATION   = 0.05               # low: trained on clean normal data
+    IF_MAX_SAMPLES     = 0.9
 
     # ── Feature Engineering ──────────────────────────────────────────────
     DROP_COLUMNS = ["id"]                     # columns to discard
