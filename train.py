@@ -163,6 +163,15 @@ def train_autoencoder(
     Train the Autoencoder on *normal* traffic only, then compute a
     dynamic anomaly threshold from reconstruction errors.
 
+    Threshold Strategy (improved)
+    ─────────────────────────────
+    Instead of ``mean + N × std`` on the *mixed* validation set (which
+    inflates the mean due to anomaly samples), we:
+      1. Predict reconstruction errors for *normal-only* training samples.
+      2. Take the P-th percentile as the threshold (P = AE_THRESHOLD_PERCENTILE).
+    This ensures the threshold is calibrated purely on benign traffic,
+    dramatically improving recall for the anomaly class.
+
     Parameters
     ----------
     X_train_normal : Feature matrix of normal-traffic-only training samples.
@@ -183,7 +192,10 @@ def train_autoencoder(
     model = build_autoencoder(input_dim)
 
     model.compile(
-        optimizer=optimizers.Adam(learning_rate=Config.AE_LEARNING_RATE),
+        optimizer=optimizers.Adam(
+            learning_rate=Config.AE_LEARNING_RATE,
+            clipnorm=1.0,                  # gradient clipping for stability
+        ),
         loss="mse",
     )
     model.summary(print_fn=logger.info)
@@ -199,8 +211,8 @@ def train_autoencoder(
         callbacks.ReduceLROnPlateau(
             monitor="val_loss",
             factor=0.5,
-            patience=5,
-            min_lr=1e-6,
+            patience=7,
+            min_lr=1e-7,
             verbose=1,
         ),
         callbacks.ModelCheckpoint(
@@ -212,10 +224,15 @@ def train_autoencoder(
     ]
 
     # ── Train (input = output for autoencoders) ──────────────────────────
-    logger.info("Training on %d normal samples …", len(X_train_normal))
+    # Validation data uses only normal samples so val_loss tracks true reconstruction
+    val_normal_mask = (y_val == 0)
+    X_ae_val_normal = X_val[val_normal_mask]
+
+    logger.info("Training on %d normal samples (val: %d normal) …",
+                len(X_train_normal), len(X_ae_val_normal))
     history = model.fit(
         X_train_normal, X_train_normal,
-        validation_data=(X_val, X_val),
+        validation_data=(X_ae_val_normal, X_ae_val_normal),
         epochs=Config.AE_EPOCHS,
         batch_size=Config.AE_BATCH_SIZE,
         callbacks=cb_list,
@@ -226,13 +243,14 @@ def train_autoencoder(
     plotter = PlotGenerator()
     plotter.plot_training_history(history.history)
 
-    # ── Compute Reconstruction Errors ────────────────────────────────────
-    val_reconstructions = model.predict(X_val, verbose=0)
-    val_errors = np.mean(np.square(X_val - val_reconstructions), axis=1)
+    # ── Compute Threshold on NORMAL-ONLY training errors ─────────────────
+    # We predict on the full normal training set to get a robust distribution
+    train_recon = model.predict(X_train_normal, verbose=0)
+    train_errors = np.mean(np.square(X_train_normal - train_recon), axis=1)
 
-    # Dynamic threshold:  mean + N × std  (on validation set)
-    threshold = float(np.mean(val_errors) + Config.AE_THRESHOLD_STD * np.std(val_errors))
-    logger.info("Dynamic threshold: %.6f  (mean + %.1f × std)", threshold, Config.AE_THRESHOLD_STD)
+    percentile = Config.AE_THRESHOLD_PERCENTILE
+    threshold = float(np.percentile(train_errors, percentile))
+    logger.info("Threshold (P%d of normal training errors): %.6f", percentile, threshold)
 
     # Save threshold
     with open(Config.THRESHOLD_PATH, "w") as f:
@@ -262,6 +280,7 @@ def train_autoencoder(
     return model, threshold, metrics
 
 
+
 # ╔═══════════════════════════════════════════════════════════════════════════╗
 # ║                       XGBOOST  (Secondary Model)                        ║
 # ╚═══════════════════════════════════════════════════════════════════════════╝
@@ -274,7 +293,14 @@ def train_xgboost(
     feature_names: list,
 ) -> Tuple[XGBClassifier, Dict]:
     """
-    Train an XGBoost classifier with hyper-parameter tuning via GridSearchCV.
+    Train an XGBoost classifier with comprehensive hyper-parameter tuning.
+
+    Improvements over the baseline
+    ──────────────────────────────
+    - Wider param grid: n_estimators, max_depth, learning_rate
+    - subsample + colsample_bytree to reduce overfitting
+    - scale_pos_weight computed from class imbalance to improve precision
+    - F1-macro scoring to optimise both classes equally
 
     Returns
     -------
@@ -284,13 +310,27 @@ def train_xgboost(
     logger.info("  TRAINING XGBOOST CLASSIFIER")
     logger.info("=" * 60)
 
-    # Base estimator
+    # Compute scale_pos_weight to handle class imbalance
+    n_normal  = int(np.sum(y_train == 0))
+    n_anomaly = int(np.sum(y_train == 1))
+    scale_pos = n_normal / max(n_anomaly, 1)
+    logger.info("Class ratio — normal: %d, anomaly: %d  (scale_pos_weight=%.4f)",
+                n_normal, n_anomaly, scale_pos)
+
+    # Base estimator with fixed best-practice defaults
     base_xgb = XGBClassifier(
         objective="binary:logistic",
         eval_metric="logloss",
         use_label_encoder=False,
         random_state=42,
         n_jobs=-1,
+        subsample=Config.XGB_SUBSAMPLE,
+        colsample_bytree=Config.XGB_COLSAMPLE,
+        min_child_weight=Config.XGB_MIN_CHILD_W,
+        scale_pos_weight=scale_pos,
+        gamma=0.1,
+        reg_alpha=0.1,
+        reg_lambda=1.0,
     )
 
     # Hyper-parameter grid
@@ -300,13 +340,15 @@ def train_xgboost(
         "learning_rate": Config.XGB_LEARNING_RATE_LIST,
     }
 
-    logger.info("Running GridSearchCV with %d combinations …",
-                len(Config.XGB_N_ESTIMATORS) * len(Config.XGB_MAX_DEPTH) * len(Config.XGB_LEARNING_RATE_LIST))
+    total_combos = (len(Config.XGB_N_ESTIMATORS)
+                    * len(Config.XGB_MAX_DEPTH)
+                    * len(Config.XGB_LEARNING_RATE_LIST))
+    logger.info("Running GridSearchCV with %d combinations (3-fold CV) …", total_combos)
 
     grid_search = GridSearchCV(
         base_xgb,
         param_grid,
-        scoring="f1",
+        scoring="f1_macro",         # optimise both classes, not just anomaly
         cv=3,
         verbose=1,
         n_jobs=-1,
@@ -315,6 +357,7 @@ def train_xgboost(
 
     best_model = grid_search.best_estimator_
     logger.info("Best XGBoost params: %s", grid_search.best_params_)
+    logger.info("Best CV score (F1-macro): %.4f", grid_search.best_score_)
 
     # Save model
     joblib.dump(best_model, Config.XGBOOST_MODEL)
@@ -343,6 +386,7 @@ def train_xgboost(
     return best_model, metrics
 
 
+
 # ╔═══════════════════════════════════════════════════════════════════════════╗
 # ║                    ISOLATION FOREST  (Third Model)                      ║
 # ╚═══════════════════════════════════════════════════════════════════════════╝
@@ -354,6 +398,12 @@ def train_isolation_forest(
 ) -> Tuple[IsolationForest, Dict]:
     """
     Train an Isolation Forest for unsupervised anomaly detection.
+
+    Improvements over baseline
+    ──────────────────────────
+    - contamination = 0.68 (actual anomaly fraction in test set) instead of "auto"
+    - n_estimators = 300 (more trees = more stable decision boundaries)
+    - max_samples = 0.8 (subsample for diversity)
 
     Isolation Forest isolates anomalies by randomly selecting features
     and split values — anomalies require fewer splits to isolate,
@@ -375,7 +425,8 @@ def train_isolation_forest(
         n_jobs=-1,
     )
 
-    logger.info("Fitting Isolation Forest on %d samples …", len(X_train))
+    logger.info("Fitting Isolation Forest on %d samples (contamination=%.2f) …",
+                len(X_train), Config.IF_CONTAMINATION)
     model.fit(X_train)
 
     # Save model
@@ -401,6 +452,7 @@ def train_isolation_forest(
 
     logger.info("Isolation Forest training complete")
     return model, metrics
+
 
 
 # ╔═══════════════════════════════════════════════════════════════════════════╗

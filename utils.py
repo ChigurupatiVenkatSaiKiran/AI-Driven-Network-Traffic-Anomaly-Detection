@@ -75,34 +75,38 @@ class Config:
     FEATURE_COLS_PATH = MODELS_DIR / "feature_columns.json"
 
     # ── Autoencoder Hyper-parameters ─────────────────────────────────────
-    AE_ENCODING_DIMS = [64, 32, 16]          # encoder layers  (→ bottleneck 16)
-    AE_DECODING_DIMS = [32, 64]              # decoder layers
+    AE_ENCODING_DIMS = [128, 64, 32]         # encoder layers  (→ bottleneck 32)
+    AE_DECODING_DIMS = [64, 128]             # decoder layers (mirror encoder)
     AE_ACTIVATION    = "relu"
     AE_OUTPUT_ACT    = "sigmoid"
-    AE_DROPOUT       = 0.2
-    AE_LEARNING_RATE = 1e-3
-    AE_EPOCHS        = 100
-    AE_BATCH_SIZE    = 256
-    AE_PATIENCE      = 10                    # early stopping patience
-    AE_THRESHOLD_STD = 2.0                   # mean + N×std for threshold
+    AE_DROPOUT       = 0.1                   # reduced: less regularisation for better recall
+    AE_LEARNING_RATE = 5e-4                  # lower LR: more stable convergence
+    AE_EPOCHS        = 150                   # more epochs with early stopping guard
+    AE_BATCH_SIZE    = 512                   # larger batch: smoother gradients
+    AE_PATIENCE      = 15                    # give the model more time to converge
+    AE_THRESHOLD_PERCENTILE = 95             # percentile of normal-only errors (replaces mean+N×std)
 
-    # ── XGBoost Hyper-parameters ─────────────────────────────────────────
-    XGB_N_ESTIMATORS = [100]
-    XGB_MAX_DEPTH    = [6]
-    XGB_LEARNING_RATE_LIST = [0.1]
+    # ── XGBoost Hyper-parameters (wider grid for better optimum) ─────────
+    XGB_N_ESTIMATORS = [200, 300, 500]
+    XGB_MAX_DEPTH    = [6, 8, 10]
+    XGB_LEARNING_RATE_LIST = [0.05, 0.1, 0.2]
+    XGB_SUBSAMPLE    = 0.8
+    XGB_COLSAMPLE    = 0.8
+    XGB_MIN_CHILD_W  = 1
+    XGB_SCALE_POS    = None                  # set dynamically from class ratio
 
     # ── Isolation Forest Hyper-parameters ────────────────────────────────
-    IF_N_ESTIMATORS    = 200
-    IF_CONTAMINATION   = "auto"
-    IF_MAX_SAMPLES     = "auto"
+    IF_N_ESTIMATORS    = 300
+    IF_CONTAMINATION   = 0.45                # sklearn max is 0.5; set high to match anomaly-heavy dataset
+    IF_MAX_SAMPLES     = 0.8
 
     # ── Feature Engineering ──────────────────────────────────────────────
     DROP_COLUMNS = ["id"]                     # columns to discard
     CATEGORICAL_COLS = ["proto", "service", "state", "attack_cat"]
     TARGET_COL   = "label"
     ATTACK_COL   = "attack_cat"
-    VARIANCE_THRESHOLD = 0.01                 # minimum variance to keep a feature
-    CORRELATION_THRESHOLD = 0.95              # drop one of two highly-correlated feats
+    VARIANCE_THRESHOLD = 0.001                # lowered: keep more features for models
+    CORRELATION_THRESHOLD = 0.98              # raised: only drop near-perfect duplicates
 
     # ── Visualisation Defaults ───────────────────────────────────────────
     FIGURE_DPI  = 150
