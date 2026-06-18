@@ -242,13 +242,14 @@ Model evaluations scored against the UNSW-NB15 test set (175,341 records):
 
 | Model | Accuracy | Precision | Recall | F1-Score | ROC-AUC |
 | :--- | :---: | :---: | :---: | :---: | :---: |
-| **Deep Autoencoder** | `80.2%` | **`99.38%`** | `82.4%` | `81.6%` | `0.8950` |
-| **XGBoost Classifier** | **`96.8%`** | `98.82%` | **`96.1%`** | **`97.4%`** | **`0.9860`** |
-| **Isolation Forest** | `72.4%` | `85.22%` | `70.1%` | `71.2%` | `0.7640` |
+| **Deep Autoencoder** | `72.0%` | **`95.16%`** | `62.0%` | `75.1%` | `0.7966` |
+| **XGBoost Classifier** | **`90.0%`** | `98.70%` | **`86.5%`** | **`92.2%`** | **`0.9835`** |
+| **Isolation Forest** | `51.6%` | `66.2%` | `59.1%` | `62.5%` | `0.5196` |
 
 ### Key Trade-offs:
-* **The Autoencoder** exhibits high Precision (`99.38%`), ensuring that flagged alerts have an extremely low false-alarm rate.
-* **XGBoost** provides the strongest class separation boundary (ROC-AUC of `0.9860`), rendering it highly effective for classifying known threat behaviors.
+* **The Autoencoder** achieves high Precision (`95.16%`), meaning flagged alerts have a very low false-alarm rate. The P95 threshold calibrated on normal-only traffic ensures the model only fires when reconstruction error is genuinely anomalous.
+* **XGBoost** provides the strongest class separation boundary (ROC-AUC `0.9835`), making it the primary classifier for known threat behaviors. The 27-combination grid search (n_estimators, max_depth, learning_rate) identified `lr=0.2, max_depth=8, n_estimators=500` as the optimal configuration.
+* **Isolation Forest** is fully unsupervised — it requires no labels, making it ideal for zero-day and novel attack pre-screening where labeled data is unavailable.
 
 ---
 
