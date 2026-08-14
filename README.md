@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=30&pause=1000&color=00D4FF&center=true&vCenter=true&width=800&lines=AI-Driven+Network+Traffic+Anomaly+Detection;Real-Time+Threat+Intelligence+%7C+Deep+Learning;Protect+Your+Network+With+Hybrid+AI" alt="Typing SVG" />
+<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=30&pause=1000&color=00D4FF&center=true&vCenter=true&width=850&lines=AI-Driven+Network+Traffic+Anomaly+Detection;Real-Time+Threat+Intelligence+%7C+Deep+Learning;Hybrid+Autoencoder+%2B+XGBoost+%2B+Isolation+Forest;Production-Grade+Cyber-Defense+Intelligence" alt="Typing SVG" />
 
 <br/>
 
@@ -8,21 +8,22 @@
   <img src="https://img.shields.io/badge/Python-3.10%2B-3776AB?style=for-the-badge&logo=python&logoColor=white"/>
   <img src="https://img.shields.io/badge/TensorFlow-2.x-FF6F00?style=for-the-badge&logo=tensorflow&logoColor=white"/>
   <img src="https://img.shields.io/badge/XGBoost-Optimized-EB4C42?style=for-the-badge&logo=xgboost&logoColor=white"/>
-  <img src="https://img.shields.io/badge/Streamlit-Dashboard-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Streamlit-Live_Cloud-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white"/>
   <img src="https://img.shields.io/badge/License-MIT-22C55E?style=for-the-badge&logo=opensourceinitiative&logoColor=white"/>
-  <img src="https://img.shields.io/badge/Status-Production_Ready-00D4FF?style=for-the-badge"/>
+  <img src="https://img.shields.io/badge/IEEE-Publication_Ready-1A237E?style=for-the-badge&logo=ieee&logoColor=white"/>
 </p>
 
 <p align="center">
   <img src="https://img.shields.io/badge/ROC--AUC-0.9835-blueviolet?style=flat-square&logo=chartdotjs"/>
   <img src="https://img.shields.io/badge/F1--Score-92.6%25-success?style=flat-square"/>
-  <img src="https://img.shields.io/badge/UNSW--NB15-175K%20Records-orange?style=flat-square"/>
+  <img src="https://img.shields.io/badge/Detection%20Accuracy-90.43%25-00D4FF?style=flat-square"/>
+  <img src="https://img.shields.io/badge/Benchmark-UNSW--NB15-orange?style=flat-square"/>
   <img src="https://img.shields.io/badge/Models-3%20Hybrid%20AI-blue?style=flat-square"/>
 </p>
 
 <br/>
 
-> **An industry-grade, end-to-end cybersecurity intelligence platform** that captures live network traffic, extracts behavioral features, and detects anomalies in real-time using a 3-model hybrid AI pipeline — achieving **89-90%+ accuracy** and **ROC-AUC 0.98** across all models on the UNSW-NB15 benchmark.
+> **An enterprise-grade, end-to-end cyber-defense platform** combining deep representation learning, gradient-boosted decision trees, and unsupervised spatial isolation to ingest raw network traffic, extract flow-level behavioral vectors, and detect known & zero-day cyber threats in real-time with **89.4%–90.4% accuracy** and **ROC-AUC up to 0.9835**.
 
 <br/>
 
@@ -30,29 +31,49 @@
 
 ---
 
-## ⚡ Key Highlights
+## 🌐 Live Streamlit Cloud Deployment
+
+You can deploy and access the interactive Streamlit analytics dashboard **live in the cloud with 24/7 access** from any device or browser:
+
+```
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ 🚀 1-CLICK DEPLOYMENT ON STREAMLIT COMMUNITY CLOUD                          │
+│                                                                             │
+│ 1. Navigate to: https://share.streamlit.io                                  │
+│ 2. Sign in with GitHub                                                      │
+│ 3. Click "New app" and fill in:                                             │
+│    • Repository: ChigurupatiVenkatSaiKiran/AI-Driven-Network-Traffic-Anomaly-Detection │
+│    • Branch    : main                                                       │
+│    • Main path : dashboard.py                                               │
+│ 4. Click "Deploy!" — Your live dashboard URL will be generated instantly.   │
+└─────────────────────────────────────────────────────────────────────────────┘
+```
+
+---
+
+## ⚡ Key Highlights & Capabilities
 
 <table>
 <tr>
-<td align="center" width="200">
-<img src="https://img.shields.io/badge/🛡️-Anomaly%20Detection-00D4FF?style=for-the-badge"/>
-<br/><b>Zero-Day Detection</b><br/>
-Detects unseen attack patterns using reconstruction error — no signatures needed
+<td align="center" width="25%">
+<img src="https://img.shields.io/badge/🛡️-Zero--Day%20Defense-00D4FF?style=for-the-badge"/>
+<br/><b>Subspace Anomaly Profiling</b><br/>
+Detects unseen zero-day attacks via Denoising Autoencoder reconstruction error ($\text{MSE} > \tau$) without requiring prior attack signatures.
 </td>
-<td align="center" width="200">
-<img src="https://img.shields.io/badge/📡-Live%20Capture-FF6F00?style=for-the-badge"/>
-<br/><b>Real-Time Sniffing</b><br/>
-Scapy-based packet sniffer with 5-tuple flow tracking and sliding window features
+<td align="center" width="25%">
+<img src="https://img.shields.io/badge/📡-Live%20Sniffing-FF6F00?style=for-the-badge"/>
+<br/><b>5-Tuple Flow Correlation</b><br/>
+Real-time packet capture engine using Scapy with sliding-window flow aggregation matching the UNSW-NB15 schema.
 </td>
-<td align="center" width="200">
-<img src="https://img.shields.io/badge/🧠-Hybrid%20AI-7C3AED?style=for-the-badge"/>
-<br/><b>3-Model Ensemble</b><br/>
-Deep AE + XGBoost + IF Ensemble — each detecting different threat profiles
+<td align="center" width="25%">
+<img src="https://img.shields.io/badge/🧠-Hybrid%20Tri--Core-7C3AED?style=for-the-badge"/>
+<br/><b>3-Model AI Architecture</b><br/>
+Semi-supervised Autoencoder, GridSearch XGBoost, and Isolation Forest Hybrid Ensemble with cross-model feature augmentation.
 </td>
-<td align="center" width="200">
-<img src="https://img.shields.io/badge/📊-Dashboard-FF4B4B?style=for-the-badge"/>
-<br/><b>Visual Analytics</b><br/>
-Live Streamlit dashboard with real-time charts, alerts, and system health
+<td align="center" width="25%">
+<img src="https://img.shields.io/badge/📊-SOC%20Dashboard-FF4B4B?style=for-the-badge"/>
+<br/><b>10 Analytics Panels</b><br/>
+Interactive dark-themed SOC interface with live packet streams, confusion matrices, ROC curves, and health telemetry.
 </td>
 </tr>
 </table>
@@ -61,422 +82,403 @@ Live Streamlit dashboard with real-time charts, alerts, and system health
 
 ## 📌 Table of Contents
 
-| # | Section |
-|---|---------|
-| 1 | [Project Overview & Motivation](#-project-overview--motivation) |
-| 2 | [System Architecture](#-system-architecture) |
-| 3 | [AI Model Deep-Dive](#-ai-model-deep-dive) |
-| 4 | [Performance Results](#-performance-results) |
-| 5 | [Feature Schema](#-real-time-feature-schema) |
-| 6 | [Project Structure](#-project-structure) |
-| 7 | [Installation](#-installation--setup) |
-| 8 | [Usage Guide](#-usage-guide) |
-| 9 | [Dashboard Preview](#-dashboard-preview) |
-| 10 | [License](#-license) |
+1. [Comprehensive Project Explanation & Domain Theory](#-comprehensive-project-explanation--domain-theory)
+2. [IEEE System Architecture Diagram](#-ieee-system-architecture-diagram)
+3. [IEEE End-to-End Pipeline Diagram](#-ieee-end-to-end-pipeline-diagram)
+4. [Deep Algorithmic & Mathematical Formulations](#-deep-algorithmic--mathematical-formulations)
+5. [Benchmark Performance & Evaluation Metrics](#-benchmark-performance--evaluation-metrics)
+6. [Real-Time Feature Engineering Schema](#-real-time-feature-engineering-schema)
+7. [Directory Structure](#-directory-structure)
+8. [Installation & Environment Setup](#-installation--environment-setup)
+9. [Execution & Operational Workflow](#-execution--operational-workflow)
+10. [Streamlit Cloud Deployment Guide](#-streamlit-cloud-deployment-guide)
+11. [Dashboard Visualizations & Panel Previews](#-dashboard-visualizations--panel-previews)
+12. [License](#-license)
 
 ---
 
-## 💡 Project Overview & Motivation
+## 💡 Comprehensive Project Explanation & Domain Theory
 
-Traditional **Intrusion Detection Systems (IDS)** rely on signature databases (Snort rules, YARA, CVE lists). They fail completely against:
+### 1. The Core Cybersecurity Problem
+Modern computer networks face an exponential influx of sophisticated cyber attacks ranging from Distributed Denial of Service (DoS/DDoS), unauthorized shellcode injections, and credential exploits to stealthy low-and-slow reconnaissance probing. 
 
-- 🔴 **Zero-Day Exploits** — attacks with no known signature
-- 🔴 **Polymorphic Malware** — malware that mutates to evade detection  
-- 🔴 **Insider Threats** — behavioral anomalies invisible to signature scanners
-- 🔴 **APTs (Advanced Persistent Threats)** — slow, low-and-slow attacks
-
-This system shifts the paradigm: instead of "what does an attack look like?", it asks **"what does normal look like?"** — and flags anything that deviates.
+Traditional **Intrusion Detection Systems (IDS)** rely primarily on **Signature Matching** (e.g., Snort rules, Suricata signatures, CVE pattern tables). While fast, signature-based detection exhibits critical vulnerabilities:
+* ❌ **Zero-Day Blindness**: Unseen attack vectors have no stored signature and bypass defenses entirely.
+* ❌ **Polymorphism & Evasion**: Slight byte-level mutations, payload encryption, or packet fragmentation alter signatures while preserving attack intent.
+* ❌ **High Maintenance Overhead**: Security engineers must manually draft and deploy thousands of rules every week.
 
 ```
-Traditional IDS:  Network Traffic ──▶ [Signature DB] ──▶ MATCH/NO-MATCH
-AI-Driven IDS:    Network Traffic ──▶ [Behavioral Model] ──▶ ANOMALY SCORE
+Traditional Paradigm :  Raw Traffic ──▶ [Signature DB Lookup] ──▶ MATCH (Known) / PASS (Zero-Day Miss)
+Behavioral Paradigm  :  Raw Traffic ──▶ [AI Normal Manifold]  ──▶ RESIDUAL ERROR / ANOMALY PROBABILITY
 ```
 
-### Why a Hybrid Architecture?
+### 2. The AI-Driven Behavioral Paradigm
+This system reformulates intrusion detection as a **high-dimensional behavioral anomaly detection and classification task**. Rather than memorizing threat signatures, the system constructs a statistical and geometric representation of **normal network behavior** across multi-dimensional flow metrics (inter-arrival jitter, packet velocity, TCP window sizing, state transitions, TTL divergence).
 
-No single model handles all threat types optimally:
+### 3. Attack Taxonomy Addressed (UNSW-NB15 Benchmark)
+The system was evaluated against all 9 principal attack categories in modern threat intelligence:
+* 💥 **DoS (Denial of Service)**: High-rate connection floods aiming to exhaust server memory/bandwidth.
+* 🔍 **Reconnaissance & Probing**: Port scanning, OS fingerprinting, and host enumeration sweeps.
+* 🔓 **Exploits & Shellcode**: Buffer overflow payloads and command execution strings.
+* 🚪 **Backdoors & Rootkits**: Stealthy persistence channels bypassing standard authentication.
+* 🧬 **Fuzzers & Generic**: Automated random protocol mutation fuzzing and cryptographic abuse.
+* 🕵️ **Analysis & Worms**: Web application scanning (SQLi, XSS) and self-replicating propagation.
 
-| Model | Threat Type | Training | Labels Required |
-|---|---|---|---|
-| **Deep Autoencoder** | Zero-day, novel attacks | Normal-only traffic | ❌ None |
-| **XGBoost Classifier** | Known attack categories | Labeled dataset | ✅ Yes |
-| **IF Ensemble** | Statistical outliers | Normal-only + meta | ⚡ Hybrid |
+### 4. Tri-Core Model Design Philosophy
+No single machine learning paradigm excels across both structured tabular reasoning and unsupervised zero-day isolation. We engineer a **Tri-Core Ensemble**:
 
----
-
-## 🏗 System Architecture
-
-```mermaid
-flowchart TD
-    A[🌐 Live Network Interface] -->|Scapy Raw Sniffer| B[🔍 Flow Tracker]
-    B -->|5-Tuple Flow Keys| C[⚙️ Feature Engineering]
-
-    subgraph FE [Feature Engineering Pipeline]
-        C1[Mode/Median Imputation] --> C2[Label Encoding]
-        C2 --> C3[Standard Scaling]
-        C3 --> C4[Variance & Correlation Filter]
-        C4 --> C5[MinMax Normalization]
-    end
-
-    C5 -->|39 Clean Features| D
-
-    subgraph AI [🧠 Hybrid AI Model Core]
-        D1[🔵 Deep Autoencoder\nDenoising + Semi-supervised\nBottleneck = 8 dims]
-        D2[🟠 XGBoost Classifier\nGridSearch 27 combos\nscale_pos_weight]
-        D3[🟢 IF Ensemble\nNormal-only IF + AE error\n41-feature XGB meta-model]
-    end
-
-    D1 -->|Reconstruction Error| E[📊 Threshold Engine]
-    D2 -->|Threat Probability| E
-    D3 -->|Hybrid Anomaly Score| E
-
-    E -->|Alert Level: LOW/MED/HIGH| F[🚨 Severity Classifier]
-    F --> G[📱 Streamlit Dashboard]
-
-    subgraph DASH [Dashboard Panels]
-        G1[Live Monitor & Protocol Charts]
-        G2[ROC & Confusion Matrix]
-        G3[Feature Importance]
-        G4[System Health Gauges]
-        G5[Detection History Table]
-    end
+```
+┌────────────────────────────────────────────────────────────────────────────────────────┐
+│                              HYBRID AI TRI-CORE ROLES                                  │
+├───────────────────────┬──────────────────────────────────┬─────────────────────────────┤
+│ Model                 │ Learning Paradigm                │ Security Specialization     │
+├───────────────────────┼──────────────────────────────────┼─────────────────────────────┤
+│ 🔵 Deep Autoencoder   │ Semi-Supervised Representation   │ Zero-day & novel attacks    │
+│ 🟠 XGBoost Classifier │ Supervised Gradient Boosting     │ High-precision known events │
+│ 🟢 IF Ensemble        │ Spatial Isolation + Meta Boost   │ Multi-modal boundary blend  │
+└───────────────────────┴──────────────────────────────────┴─────────────────────────────┘
 ```
 
 ---
 
-## 🧠 AI Model Deep-Dive
+## 🏛️ IEEE System Architecture Diagram
 
-### 1️⃣ Deep Denoising Autoencoder (Semi-supervised)
-
-The most innovative model — trained **without any attack labels** using a 2-phase strategy:
-
-**Architecture:**
-```
-Input (39) ──▶ Dense(128) ──▶ Dense(64) ──▶ Dense(32) ──▶ Dense(8) [Bottleneck]
-                                                                        │
-Output (39) ◀── Dense(128) ◀── Dense(64) ◀── Dense(32) ◀──────────────┘
-```
-
-**Key Design Choices:**
-- 🔷 **Bottleneck = 8 dims** — forces extreme compression; anomalies can't fit in the normal subspace
-- 🔷 **Denoising** — trains on noisy input → clean output (σ=0.05), learns intrinsic manifold
-- 🔷 **L1 Activity Regularization** on bottleneck — enforces sparsity
-- 🔷 **LeakyReLU(0.1)** — avoids dead neurons in deep networks
-- 🔷 **2-Phase Fine-tuning** — Phase 1: frozen encoder + new classification head; Phase 2: full unfreeze at LR=5e-5
-
-$$\mathcal{L}_{\text{denoising}}(x, \hat{x}) = \frac{1}{d}\sum_{i=1}^{d}(x_i - \hat{x}_i)^2 \quad \text{where input} = x + \mathcal{N}(0,\,0.05^2)$$
-
-### 2️⃣ XGBoost Gradient Boosted Classifier
-
-$$\mathcal{L}^{(t)} = \sum_{i=1}^{n} l\!\left(y_i,\, \hat{y}_i^{(t-1)} + f_t(x_i)\right) + \Omega(f_t)$$
-
-where $\Omega(f) = \gamma T_k + \frac{1}{2}\lambda\sum_{j}w_j^2$ regularizes tree complexity.
-
-**Optimization:** 27-combination GridSearchCV (3-fold) over:
-- `n_estimators` ∈ {200, 300, 500}
-- `max_depth` ∈ {6, 8, 10}  
-- `learning_rate` ∈ {0.05, 0.1, 0.2}
-
-**Best config:** `lr=0.2, max_depth=8, n_estimators=500` with `scale_pos_weight=1.57`
-
-### 3️⃣ Isolation Forest Ensemble
-
-$$s(x,n) = 2^{-\frac{\mathbb{E}[h(x)]}{c(n)}}$$
-
-where $h(x)$ = path length, $c(n)$ = expected path length for a random sample.
-
-**Key Innovation:** Standard IF (mixed training) gives ROC-AUC ~0.52 (random!). This implementation:
-1. Trains IF on **normal-only data** — it learns the normal manifold specifically
-2. Uses IF decision scores + AE reconstruction error as **additional features**
-3. Feeds 41 features → XGBoost meta-classifier → **90.4% accuracy** (was 64%)
-
----
-
-## 📈 Performance Results
-
-Model evaluations on the UNSW-NB15 test set (**175,341 records**, 32% normal / 68% anomaly):
+Below is the formal, publication-grade IEEE system architecture diagram detailing the complete 5-layer design from physical packet ingestion to real-time SOC alerting:
 
 <div align="center">
 
-| Model | Accuracy | Precision | Recall | F1-Score | ROC-AUC |
-| :--- | :---: | :---: | :---: | :---: | :---: |
-| 🔵 **Deep Autoencoder Classifier** | `89.4%` | `96.72%` | `87.5%` | `91.9%` | `0.9767` |
-| 🟠 **XGBoost Classifier** | `89.8%` | `98.79%` | `86.0%` | `92.0%` | `0.9835` |
-| 🟢 **Isolation Forest Ensemble** | **`90.4%`** | `98.51%` | **`87.3%`** | **`92.6%`** | `0.9833` |
+![IEEE System Architecture Diagram](assets/diagrams/architecture_diagram.jpg)
+
+<p align="center">
+<b>Fig. 1.</b> High-Level IEEE System Architecture of the AI-Driven Network Traffic Anomaly Detection System, showing Layer 1 (Input Sources), Layer 2 (Feature Engineering Pipeline), Layer 3 (Hybrid AI Model Core), Layer 4 (Prior-Adjusted Decision Threshold Engine), and Layer 5 (Results & Dashboard Interface).
+</p>
 
 </div>
 
-> 💡 **Prior-adjusted thresholds** are used to account for the UNSW-NB15 train/test distribution shift (train: 62% anomaly → test: 68% anomaly), optimising `proxy_acc = 0.32 × specificity + 0.68 × recall`.
-
-### Training Evolution
-
-| Metric | Original Baseline | Final Optimized | Improvement |
-|---|---|---|---|
-| Autoencoder Accuracy | 48% | **89.4%** | +41.4% ⬆️ |
-| Autoencoder F1 | 0.39 | **0.919** | +136% ⬆️ |
-| Autoencoder ROC-AUC | 0.52 | **0.9767** | +88% ⬆️ |
-| XGBoost F1 | 0.92 | **0.920** | stable ✅ |
-| Isolation Forest F1 | 0.22 | **0.926** | +321% ⬆️ |
+### Architectural Layer Breakdown:
+1. **Layer 1 — Ingestion Layer**: Intercepts physical Ethernet/Wi-Fi frame buffers through Scapy's raw socket hook with Npcap NDIS 6 driver bindings, simultaneously supporting static CSV datasets.
+2. **Layer 2 — Feature Engineering Pipeline**: Cleans, standardizes, and encodes raw packets into a calibrated 39-dimensional vector using median imputation, label mapping, and variance filtering.
+3. **Layer 3 — Hybrid AI Model Core**: Deploys three parallel detection models operating across unsupervised reconstruction, tree boosting, and spatial isolation.
+4. **Layer 4 — Prior-Adjusted Threshold Engine**: Calibrates decision thresholds using empirical validation priors to combat dataset distribution shift.
+5. **Layer 5 — SOC Dashboard & Alerting**: Delivers continuous KPI telemetry, real-time confusion matrices, radar performance maps, and severity-graded incident tickets.
 
 ---
 
-## 🔬 Real-Time Feature Schema
+## 🔄 IEEE End-to-End Pipeline Diagram
 
-The live packet sniffer extracts **39 features** matching the UNSW-NB15 format:
+The comprehensive training and real-time inference workflows are illustrated in the dual-stage IEEE pipeline diagram below:
+
+<div align="center">
+
+![IEEE End-to-End Pipeline Diagram](assets/diagrams/pipeline_diagram.jpg)
+
+<p align="center">
+<b>Fig. 2.</b> IEEE End-to-End Machine Learning Pipeline: (Left) Training Pipeline with 2-phase semi-supervised Autoencoder fine-tuning, 27-combination XGBoost GridSearchCV, and hybrid Isolation Forest training; (Right) Real-time Inference Pipeline with feature extraction, multi-model forward passes, threshold validation, and dashboard synchronization.
+</p>
+
+</div>
+
+---
+
+## 🧠 Deep Algorithmic & Mathematical Formulations
+
+### 1. Deep Denoising Autoencoder (Semi-Supervised)
+
+The Autoencoder learns an identity mapping $f_{\theta, \phi}(x) \approx x$ through a constrained latent bottleneck representation:
+
+```
+Input x (39-D) ──▶ Dense(128) ──▶ Dense(64) ──▶ Dense(32) ──▶ Latent z (8-D) 
+                                                                     │
+Output x̂ (39-D) ◀── Dense(128) ◀── Dense(64) ◀── Dense(32) ◀─────────┘
+```
+
+#### Mathematical Objective:
+To prevent the autoencoder from trivially memorizing the identity function, Gaussian perturbation $\tilde{x} = x + \epsilon$, where $\epsilon \sim \mathcal{N}(0, \sigma^2 I)$ with $\sigma=0.05$, is injected into the training vectors. The network optimizes the Denoising Mean Squared Error with an $L_1$ sparsity penalty on latent activations $h^{(4)}$:
+
+$$\mathcal{L}_{\text{AE}}(\theta, \phi) = \frac{1}{N}\sum_{i=1}^{N} \|x_i - g_\phi(f_\theta(\tilde{x}_i))\|^2_2 + \lambda \sum_{j=1}^{8} |h_j^{(4)}|$$
+
+#### Two-Phase Fine-Tuning Protocol:
+1. **Phase 1 (Unsupervised Pre-training)**: Train encoder-decoder purely on normal traffic ($y=0$, 34,206 samples) over 150 epochs with early stopping.
+2. **Phase 2 (Supervised Fine-tuning)**: Discard decoder, attach classification head $\text{Dense}(8 \to 64 \to 32 \to 1)$ with sigmoid activation, freeze encoder for 30 epochs, then unfreeze entire network with Adam optimizer at $\eta = 5 \times 10^{-5}$ minimizing Binary Cross-Entropy:
+
+$$\mathcal{L}_{\text{BCE}}(y, \hat{y}) = - \left[ y \log(\hat{y}) + (1-y)\log(1-\hat{y}) \right]$$
+
+---
+
+### 2. XGBoost Gradient Boosted Decision Trees
+
+XGBoost constructs an additive ensemble of $K$ regression trees $\hat{y}_i = \sum_{k=1}^K f_k(x_i), f_k \in \mathcal{F}$ by minimizing the regularized second-order Taylor expansion objective:
+
+$$\mathcal{L}^{(t)} \approx \sum_{i=1}^n \left[ g_i f_t(x_i) + \frac{1}{2} h_i f_t^2(x_i) \right] + \gamma T + \frac{1}{2}\lambda \sum_{j=1}^T w_j^2$$
+
+where the first and second order gradients are defined as:
+$$g_i = \partial_{\hat{y}^{(t-1)}} l(y_i, \hat{y}^{(t-1)}) = \hat{y}_i^{(t-1)} - y_i, \quad h_i = \partial^2_{\hat{y}^{(t-1)}} l(y_i, \hat{y}^{(t-1)}) = \hat{y}_i^{(t-1)}(1 - \hat{y}_i^{(t-1)})$$
+
+The optimal leaf weight $w_j^*$ and split score metric $\mathcal{G}_{\text{split}}$ are computed analytically:
+$$w_j^* = -\frac{\sum_{i \in I_j} g_i}{\sum_{i \in I_j} h_i + \lambda}, \qquad \mathcal{G}_{\text{split}} = \frac{1}{2}\left[\frac{(\sum_{i \in I_L} g_i)^2}{\sum_{i \in I_L} h_i + \lambda} + \frac{(\sum_{i \in I_R} g_i)^2}{\sum_{i \in I_R} h_i + \lambda} - \frac{(\sum_{i \in I} g_i)^2}{\sum_{i \in I} h_i + \lambda}\right] - \gamma$$
+
+**Hyperparameter Search Space**: 27-grid combination optimized via 3-fold Stratified Cross-Validation (`learning_rate=0.2`, `max_depth=8`, `n_estimators=500`, `scale_pos_weight=1.57`).
+
+---
+
+### 3. Isolation Forest Hybrid Ensemble
+
+Isolation Forest isolates anomalous observations by randomly sub-sampling features and split coordinates. The anomaly score $s(x, n)$ for an instance $x$ over $n$ samples is given by:
+
+$$s(x, n) = 2^{-\frac{\mathbb{E}[h(x)]}{c(n)}}, \qquad c(n) = 2\left(\ln(n - 1) + 0.5772156649\right) - \frac{2(n - 1)}{n}$$
+
+where $h(x)$ is path length from root to termination and $c(n)$ is average path length of unsuccessful searches in Binary Search Trees.
+
+#### Feature Augmentation Engine:
+Rather than taking raw binary predictions, the continuous isolation score $s(x)$ and Autoencoder reconstruction error $\|x - \hat{x}\|_2^2$ are concatenated directly with the 39 network features:
+
+$$\tilde{X} = \left[ x_1, x_2, \dots, x_{39}, \, s_{\text{IF}}(x), \, \mathcal{L}_{\text{AE}}(x) \right] \in \mathbb{R}^{41}$$
+
+An XGBoost meta-classifier trained on $\tilde{X}$ achieves a peak test F1-score of **92.55%**, outperforming standard standalone Isolation Forests.
+
+---
+
+### 4. Prior-Adjusted Optimal Threshold Engine
+
+In real-world networks and the UNSW-NB15 benchmark, class distribution shift exists between training (38% normal / 62% anomaly) and testing sets (32% normal / 68% anomaly). Standard 0.5 classification thresholds lead to sub-optimal precision-recall operating points. 
+
+We formulate a **Prior-Adjusted Objective Function**:
+
+$$\tau^* = \arg\max_{\tau \in [0, 1]} \left( \pi_0 \cdot \text{TNR}(\tau) + \pi_1 \cdot \text{TPR}(\tau) \right)$$
+
+where $\pi_0 = 0.32$ (normal prior) and $\pi_1 = 0.68$ (anomaly prior). A 300-point sweep over the validation manifold identifies optimal operating thresholds: $\tau_{\text{AE}} = 0.3269$, $\tau_{\text{XGB}} = 0.5918$, and $\tau_{\text{IF}} = 0.3450$.
+
+---
+
+## 📈 Benchmark Performance & Evaluation Metrics
+
+Evaluated on the full UNSW-NB15 official test split (**175,341 records**):
+
+<div align="center">
+
+| AI Model Architecture | Accuracy | Precision | Recall | F1-Score | ROC-AUC |
+| :--- | :---: | :---: | :---: | :---: | :---: |
+| 🔵 **Deep Autoencoder Classifier** | `89.44%` | `96.72%` | `87.46%` | `91.86%` | `0.9767` |
+| 🟠 **XGBoost Classifier (GridSearch)** | `89.77%` | `98.79%` | `86.02%` | `91.96%` | **`0.9835`** |
+| 🟢 **Isolation Forest Hybrid Ensemble** | **`90.43%`** | `98.51%` | **`87.26%`** | **`92.55%`** | `0.9833` |
+
+</div>
+
+```
+======================================================================
+  Classification Reports — UNSW-NB15 Benchmark (175,341 Test Samples)
+======================================================================
+
+--- Deep Autoencoder Classifier (Semi-Supervised) ---
+              precision    recall  f1-score   support
+      Normal       0.78      0.94      0.85     56000
+     Anomaly       0.97      0.87      0.92    119341
+    accuracy                           0.89    175341
+
+--- XGBoost Classifier (27-Grid Optimized) ---
+              precision    recall  f1-score   support
+      Normal       0.77      0.98      0.86     56000
+     Anomaly       0.99      0.86      0.92    119341
+    accuracy                           0.90    175341
+
+--- Isolation Forest Hybrid Ensemble ---
+              precision    recall  f1-score   support
+      Normal       0.78      0.97      0.87     56000
+     Anomaly       0.99      0.87      0.93    119341
+    accuracy                           0.90    175341
+```
+
+---
+
+## 🔬 Real-Time Feature Engineering Schema
+
+The real-time sniffer parses IP, TCP, and UDP headers into **39 engineered attributes**:
 
 <details>
-<summary><b>📋 Click to expand full feature list</b></summary>
+<summary><b>📋 Click to expand 39-feature schema breakdown</b></summary>
+<br/>
 
-| Category | Features |
-|---|---|
-| **Flow Identification** | `proto`, `service`, `state` |
-| **Byte Counts** | `sbytes`, `dbytes`, `Sload`, `Dload` |
-| **Packet Counts** | `Spkts`, `Dpkts` |
-| **Timing** | `dur`, `Sintpkt`, `Dintpkt`, `Sjit`, `Djit` |
-| **Connection** | `sttl`, `dttl`, `swin`, `dwin` |
-| **TCP Flags** | `stcpb`, `dtcpb`, `Stime`, `Ltime` |
-| **Loss Metrics** | `sloss`, `dloss` |
-| **Rate Metrics** | `rate`, `Sload`, `Dload` |
-| **Derived Stats** | `ct_state_ttl`, `ct_flw_http_mthd`, `ct_ftp_cmd` |
-| **Connection History** | `ct_srv_src`, `ct_srv_dst`, `ct_dst_ltm`, `ct_src_ltm` |
+| Category | Features Included | Description |
+|---|---|---|
+| **Protocol / State** | `proto`, `service`, `state` | Transport protocol, application layer, TCP finite state machine |
+| **Volume Metrics** | `sbytes`, `dbytes`, `Spkts`, `Dpkts` | Source/destination payload bytes and total packet counts |
+| **Timing & Jitter** | `dur`, `Sintpkt`, `Dintpkt`, `Sjit`, `Djit` | Flow lifetime duration, inter-arrival time intervals, jitter dynamics |
+| **Throughput** | `rate`, `Sload`, `Dload` | Bits/sec transmission velocity across client and server streams |
+| **TCP Parameters** | `swin`, `dwin`, `stcpb`, `dtcpb` | Window buffer sizes, relative sequence byte tracking |
+| **TTL Indicators** | `sttl`, `dttl`, `ct_state_ttl` | Time-to-live distance estimating proxy hops and spoofing |
+| **Flow Aggregations**| `ct_srv_src`, `ct_srv_dst`, `ct_dst_ltm` | 100-packet sliding window destination connection frequency |
 
 </details>
 
 ---
 
-## 📁 Project Structure
+## 📁 Directory Structure
 
 ```
 AI-Driven-Network-Traffic-Anomaly-Detection/
 │
-├── 📂 models/                      # Trained model artifacts
-│   ├── autoencoder.keras           # Pretrained Denoising Autoencoder
-│   ├── ae_classifier.keras         # Semi-supervised AE Classifier
-│   ├── xgboost_model.pkl           # GridSearch-optimized XGBoost
-│   ├── isolation_forest.pkl        # Normal-only Isolation Forest
-│   ├── hybrid_if_ensemble.pkl      # IF Hybrid XGBoost meta-model
-│   ├── minmax_scaler.pkl           # MinMax scaler (AE pipeline)
-│   └── feature_columns.json        # Feature column schema
+├── 📂 .streamlit/                     # Streamlit Cloud deployment configuration
+│   └── config.toml                    # Dark theme, port, & server parameters
 │
-├── 📂 outputs/                     # Evaluation artifacts
-│   ├── classification_report.txt   # Full metrics for all 3 models
-│   ├── roc_curve_comparison.png    # Comparative ROC curves
-│   ├── confusion_matrix_*.png      # Per-model confusion matrices
-│   ├── feature_importance_*.png    # XGBoost feature importance
-│   ├── reconstruction_error.png    # AE error distribution
-│   └── model_comparison.csv        # Metrics spreadsheet
+├── 📂 assets/                         # Documentation & publication assets
+│   ├── 📂 diagrams/                   # High-resolution IEEE architecture & pipeline charts
+│   │   ├── architecture_diagram.jpg   # IEEE 5-layer system architecture
+│   │   └── pipeline_diagram.jpg       # IEEE training & inference pipeline
+│   └── 📂 screenshots/                # 8 live dashboard panel captures
+│       ├── 01_overview.png
+│       ├── 02_evaluation_metrics.png
+│       ├── 03_model_performance.png
+│       └── ...
 │
-├── 📂 data/                        # UNSW-NB15 dataset
-│   ├── UNSW_NB15_training-set.csv
-│   └── UNSW_NB15_testing-set.csv
+├── 📂 dashboard/                      # Dashboard styling & UI components
+│   └── style.css                      # Custom cyberpunk dark CSS theme
 │
-├── 📂 dashboard/                   # Dashboard assets
-│   └── style.css                   # Custom dark theme CSS
+├── 📂 Data/                           # Benchmark dataset (UNSW-NB15)
+│   ├── training.csv                   # Training split (55,945 records)
+│   └── testing.csv                    # Testing split (175,341 records)
 │
-├── 🐍 train.py                     # Full training pipeline
-├── 🐍 train_semisupervised.py      # Semi-supervised AE + IF Ensemble
-├── 🐍 final_threshold_fix.py       # Prior-adjusted threshold tuning
-├── 🐍 dashboard.py                 # Streamlit dashboard app
-├── 🐍 detect.py                    # Real-time detection engine
-├── 🐍 capture.py                   # Live packet capture (Scapy)
-├── 🐍 utils.py                     # Config, loaders, metrics, plots
-├── 📋 requirements.txt             # Python dependencies
-└── 📄 README.md                    # This file
+├── 📂 models/                         # Serialized AI model artifacts
+│   ├── autoencoder.keras              # Denoising Autoencoder weights
+│   ├── ae_classifier.keras            # Semi-supervised AE classifier
+│   ├── xgboost_model.pkl              # 27-grid tuned XGBoost model
+│   ├── isolation_forest.pkl           # Normal-manifold Isolation Forest
+│   ├── hybrid_if_ensemble.pkl         # 41-feature hybrid meta-model
+│   └── threshold_config.json          # Prior-adjusted threshold parameters
+│
+├── 📂 outputs/                        # Evaluation plots & reports
+│   ├── classification_report.txt      # Text classification metrics
+│   ├── model_comparison.csv           # Model benchmarking spreadsheet
+│   ├── roc_curve_comparison.png       # Comparative ROC curves
+│   ├── confusion_matrix_*.png         # Per-model confusion matrices
+│   └── correlation_heatmap.png        # Feature correlation matrix
+│
+├── 🐍 train.py                        # Full training pipeline (base models)
+├── 🐍 train_semisupervised.py         # Semi-supervised AE + IF Ensemble pipeline
+├── 🐍 final_threshold_fix.py          # Prior-adjusted threshold calibration
+├── 🐍 detect.py                       # Real-time packet anomaly detection engine
+├── 🐍 capture.py                      # Scapy live sniffer with 5-tuple flow tracker
+├── 🐍 dashboard.py                    # 10-panel Streamlit analytics dashboard
+├── 🐍 utils.py                        # Logging, configuration, and metrics utilities
+├── 📋 requirements.txt                # Python environment dependencies
+└── 📄 README.md                       # Master documentation
 ```
 
 ---
 
-## ⚙️ Installation & Setup
+## ⚙️ Installation & Environment Setup
 
-### Prerequisites
+### 1. Prerequisites
+* Python 3.10 or higher
+* [Npcap Packet Capture Library](https://npcap.com/#download) (Windows only, check *"Install Npcap in WinPcap API-compatible Mode"*)
 
-```bash
-# Python 3.10+
-python --version
-
-# Npcap (Windows) — required for live packet capture
-# Download from: https://npcap.com/#download
-# Install with "WinPcap API-compatible Mode" checked
-```
-
-### Step 1: Clone & Install
-
+### 2. Clone & Setup Virtual Environment
 ```bash
 git clone https://github.com/ChigurupatiVenkatSaiKiran/AI-Driven-Network-Traffic-Anomaly-Detection.git
 cd AI-Driven-Network-Traffic-Anomaly-Detection
 
+python -m venv venv
+# Windows:
+.\venv\Scripts\activate
+# Linux/macOS:
+source venv/bin/activate
+
 pip install -r requirements.txt
 ```
 
-### Step 2: Download Dataset
-
-Download the **UNSW-NB15** dataset from [UNSW Research](https://research.unsw.edu.au/projects/unsw-nb15-dataset) and place:
-```
-data/UNSW_NB15_training-set.csv
-data/UNSW_NB15_testing-set.csv
-```
-
-### Step 3: Train All Models
-
-```bash
-# Phase 1: Train base models (AE + XGBoost + IF)
-python train.py
-
-# Phase 2: Semi-supervised AE Classifier + IF Ensemble
-python train_semisupervised.py
-
-# Phase 3: Prior-adjusted threshold optimization
-python final_threshold_fix.py
-```
-
-> ⏱️ Total training time: ~10-15 minutes on CPU
-
 ---
 
-## 🚀 Usage Guide
+## 🚀 Execution & Operational Workflow
 
-### 🖥️ Launch the Dashboard
-
+### 1. Launch the Analytics Dashboard
 ```bash
 streamlit run dashboard.py
 ```
-Opens at **http://localhost:8501** — full analytics dashboard with live monitoring.
+Opens in your browser at `http://localhost:8501`.
 
-### 📡 Live Network Detection
-
+### 2. Live Packet Sniffing & Real-Time Detection
 ```bash
-# List available network interfaces
+# List available network adapters
 python check_iface.py
 
-# Start real-time capture (replace with your interface name)
+# Start real-time packet inspection on Wi-Fi adapter
 python detect.py --interface "Wi-Fi" --model all
 ```
 
-### 🔍 Offline Analysis
-
+### 3. Model Training & Threshold Calibration
 ```bash
-# Analyze from a saved PCAP or CSV
-python detect.py --input data/test_traffic.csv
-```
+# Step 1: Train base models
+python train.py
 
-### 📊 Evaluate Models Only
+# Step 2: Run Semi-Supervised fine-tuning & IF Ensemble
+python train_semisupervised.py
 
-```bash
-# Skip training, just regenerate metrics & plots
+# Step 3: Calibrate prior-adjusted decision thresholds
 python final_threshold_fix.py
 ```
 
 ---
 
-## 📊 Dashboard Preview
+## ☁️ Streamlit Cloud Deployment Guide
 
-The Streamlit dashboard provides **10 interactive visualization panels** — dark-themed, real-time analytics:
+To deploy this project online for evaluators, reviewers, and team members with permanent 24/7 access:
+
+1. Push your latest code to your GitHub repository:
+   ```bash
+   git add .
+   git commit -m "feat: complete ready for streamlit cloud deployment"
+   git push origin main
+   ```
+2. Open **[Streamlit Community Cloud](https://share.streamlit.io)** and log in with GitHub.
+3. Click **"New App"**.
+4. Select your repository: `ChigurupatiVenkatSaiKiran/AI-Driven-Network-Traffic-Anomaly-Detection`.
+5. Set **Main file path** to: `dashboard.py`.
+6. Click **"Deploy"**! 
+7. Streamlit automatically installs all dependencies from `requirements.txt` and applies the theme from `.streamlit/config.toml`. You will receive a live URL (e.g., `https://ai-network-anomaly-detection.streamlit.app`) to share in project reviews, portfolios, and research evaluations.
+
+---
+
+## 📊 Dashboard Visualizations & Panel Previews
+
+The Streamlit interface provides **10 comprehensive dark-themed SOC panels**:
 
 <div align="center">
 
-| | |
-|---|---|
-| ![Project Overview](assets/screenshots/01_overview.png) | ![Evaluation Metrics](assets/screenshots/02_evaluation_metrics.png) |
-| **🏠 Project Overview** — architecture & data pipeline | **📏 Evaluation Metrics** — 89-92%+ all models |
+| Panel 1: Overview | Panel 2: Evaluation Metrics |
+|:---:|:---:|
+| ![Overview](assets/screenshots/01_overview.png) | ![Evaluation Metrics](assets/screenshots/02_evaluation_metrics.png) |
+| **🏠 Project Overview** — System specs & data schema | **📏 Evaluation Metrics** — 89–92%+ metrics & ROC curves |
+
+| Panel 3: Model Performance | Panel 4: Live Monitor |
+|:---:|:---:|
 | ![Model Performance](assets/screenshots/03_model_performance.png) | ![Live Monitor](assets/screenshots/04_live_monitor.png) |
-| **🧠 Model Performance** — training curves & architecture | **📡 Live Traffic Monitor** — real-time packet stream |
+| **🧠 Model Performance** — Loss curves & hyperparameters | **📡 Live Traffic Monitor** — Real-time packet telemetry |
+
+| Panel 5: Anomaly Detection | Panel 6: Network Insights |
+|:---:|:---:|
 | ![Anomaly Detection](assets/screenshots/05_anomaly_detection.png) | ![Network Insights](assets/screenshots/06_network_insights.png) |
-| **🔍 Anomaly Detection** — threshold & error distribution | **🔬 Network Insights** — correlation heatmap |
+| **🔍 Anomaly Detection** — Dynamic threshold adjustment | **🔬 Network Insights** — Correlation heatmap & top features |
+
+| Panel 7: Traffic Analytics | Panel 8: System Health |
+|:---:|:---:|
 | ![Traffic Analytics](assets/screenshots/08_traffic_analytics.png) | ![System Health](assets/screenshots/07_system_health.png) |
-| **📈 Traffic Analytics** — attack category breakdown | **💻 System Health** — all models ✅ Ready |
+| **📈 Traffic Analytics** — Attack category distributions | **💻 System Health** — CPU, memory, & model ready statuses |
 
 </div>
-
----
-
-## 🛠️ Tech Stack
-
-<div align="center">
-
-| Layer | Technology | Purpose |
-|---|---|---|
-| **Deep Learning** | TensorFlow 2.x / Keras | Denoising Autoencoder architecture |
-| **ML Engine** | XGBoost | Gradient boosted threat classifier |
-| **Anomaly Detection** | scikit-learn IsolationForest | Statistical outlier detection |
-| **Feature Engineering** | pandas + NumPy | Flow feature extraction & normalization |
-| **Packet Capture** | Scapy | Live 5-tuple network flow tracking |
-| **Visualization** | Streamlit + Plotly | Real-time interactive dashboard |
-| **Serialization** | joblib + Keras SavedModel | Model persistence |
-| **Optimization** | GridSearchCV + threshold sweep | Hyperparameter & decision boundary tuning |
-
-</div>
-
----
-
-## 📜 Model Training Pipeline
-
-```mermaid
-sequenceDiagram
-    participant D as 📂 Data
-    participant FE as ⚙️ Feature Engineering
-    participant AE as 🔵 Autoencoder
-    participant XGB as 🟠 XGBoost
-    participant IF as 🟢 IF Ensemble
-    participant R as 📊 Results
-
-    D->>FE: Load UNSW-NB15 (175K records)
-    FE->>FE: Impute → Encode → Scale → Filter (39 features)
-    FE->>AE: Normal-only training set (34K samples)
-    AE->>AE: Phase 1: Unsupervised denoising pre-training (150 epochs)
-    AE->>AE: Phase 2: Semi-supervised fine-tuning (50 epochs)
-    FE->>XGB: Full labeled training set
-    XGB->>XGB: GridSearchCV 27 combos × 3-fold CV
-    FE->>IF: Normal-only training set
-    IF->>IF: Build 500 isolation trees
-    IF->>IF: Augment features + train XGB meta-model
-    AE->>R: threshold tuning (prior-adjusted)
-    XGB->>R: threshold tuning (prior-adjusted)
-    IF->>R: threshold tuning (prior-adjusted)
-    R->>R: classification_report.txt + ROC curves
-```
-
----
-
-## 🤝 Contributing
-
-Contributions are welcome! Here's how to get started:
-
-```bash
-# Fork the repo, then:
-git clone https://github.com/YOUR_USERNAME/AI-Driven-Network-Traffic-Anomaly-Detection.git
-git checkout -b feature/your-feature-name
-
-# After changes:
-git commit -m "feat: description of your change"
-git push origin feature/your-feature-name
-# Open a Pull Request
-```
-
-**Ideas for contributions:**
-- 🔧 Add LSTM/Transformer-based sequence model
-- 🔧 Integrate PCAP file import in the dashboard
-- 🔧 Add IPv6 support to the packet sniffer
-- 🔧 Docker containerization
 
 ---
 
 ## 📄 License
 
-This project is licensed under the **MIT License** — see the [LICENSE](LICENSE) file for details.
+This project is licensed under the **MIT License** — see the [LICENSE](LICENSE) file for complete details.
 
 ---
 
 <div align="center">
 
-**Built with ❤️ by [Chigurupati Venkat Sai Kiran](https://github.com/ChigurupatiVenkatSaiKiran)**
+**Developed with ❤️ by [Chigurupati Venkat Sai Kiran](https://github.com/ChigurupatiVenkatSaiKiran)**
 
 <br/>
 
-⭐ **Star this repo if you found it useful!**
-
-<br/>
-
-<img src="https://img.shields.io/github/stars/ChigurupatiVenkatSaiKiran/AI-Driven-Network-Traffic-Anomaly-Detection?style=social"/>
-<img src="https://img.shields.io/github/forks/ChigurupatiVenkatSaiKiran/AI-Driven-Network-Traffic-Anomaly-Detection?style=social"/>
+⭐ **Star this repository on GitHub if you found it valuable!**
 
 </div>
