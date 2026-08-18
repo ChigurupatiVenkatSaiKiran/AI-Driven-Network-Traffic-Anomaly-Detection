@@ -48,9 +48,9 @@ models/*.keras
 # Log files (generated at runtime)
 logs/*.log
 
-# Captured traffic data (generated at runtime)
-outputs/captured.csv
-outputs/live_detection_results.csv
+# Temporary raw captures
+# outputs/captured.csv
+# outputs/live_detection_results.csv
 
 # Jupyter checkpoints
 .ipynb_checkpoints/
