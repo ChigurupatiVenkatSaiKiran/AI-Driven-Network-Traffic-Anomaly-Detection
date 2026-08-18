@@ -8,9 +8,18 @@
   <img src="https://img.shields.io/badge/Python-3.10%2B-3776AB?style=for-the-badge&logo=python&logoColor=white"/>
   <img src="https://img.shields.io/badge/TensorFlow-2.x-FF6F00?style=for-the-badge&logo=tensorflow&logoColor=white"/>
   <img src="https://img.shields.io/badge/XGBoost-Optimized-EB4C42?style=for-the-badge&logo=xgboost&logoColor=white"/>
-  <img src="https://img.shields.io/badge/Streamlit-Live_Cloud-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Streamlit-Cloud_Live-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white"/>
   <img src="https://img.shields.io/badge/License-MIT-22C55E?style=for-the-badge&logo=opensourceinitiative&logoColor=white"/>
   <img src="https://img.shields.io/badge/IEEE-Publication_Ready-1A237E?style=for-the-badge&logo=ieee&logoColor=white"/>
+</p>
+
+<p align="center">
+  <a href="https://chigurupativenkatsaikiran-ai-driven-network-tr-dashboard-7gnqwx.streamlit.app/" target="_blank">
+    <img src="https://img.shields.io/badge/🚀%20OPEN%20LIVE%20DEMO-Streamlit%20Cloud%20(24%2F7)-00D4FF?style=for-the-badge&logo=streamlit&logoColor=white"/>
+  </a>
+  <a href="https://chigurupativenkatsaikiran-ai-driven-network-tr-dashboard-7gnqwx.streamlit.app/" target="_blank">
+    <img src="https://img.shields.io/badge/STATUS-🟢%20ONLINE%20LIVE-success?style=for-the-badge"/>
+  </a>
 </p>
 
 <p align="center">
@@ -23,31 +32,29 @@
 
 <br/>
 
+<table>
+<tr>
+<td align="center" style="background: linear-gradient(135deg, #0d1117 0%, #161b22 100%); border: 2px solid #00D4FF; border-radius: 12px; padding: 18px 26px;">
+<h3 style="margin-top: 0; color: #00D4FF;">🌐 Interactive Live SOC Analytics Dashboard (24/7 Cloud Access)</h3>
+<p style="font-size: 1rem; color: #8b949e; line-height: 1.6; margin-bottom: 14px;">
+Experience the fully functional 10-panel Security Operations Center (SOC) analytics dashboard deployed live in the cloud. Explore real-time packet streams, dynamic threshold tuning, model comparisons, network correlation insights, and interactive Plotly ROC curves directly in your browser:
+</p>
+<a href="https://chigurupativenkatsaikiran-ai-driven-network-tr-dashboard-7gnqwx.streamlit.app/" target="_blank">
+  <img src="https://img.shields.io/badge/▶%20CLICK%20HERE%20FOR%20LIVE%20ACCESS-Streamlit%20App%20(Free%20Live%20Demo)-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white" />
+</a>
+<br/><br/>
+<code>🔗 Direct Public Link: https://chigurupativenkatsaikiran-ai-driven-network-tr-dashboard-7gnqwx.streamlit.app/</code>
+</td>
+</tr>
+</table>
+
+<br/>
+
 > **An enterprise-grade, end-to-end cyber-defense platform** combining deep representation learning, gradient-boosted decision trees, and unsupervised spatial isolation to ingest raw network traffic, extract flow-level behavioral vectors, and detect known & zero-day cyber threats in real-time with **89.4%–90.4% accuracy** and **ROC-AUC up to 0.9835**.
 
 <br/>
 
 </div>
-
----
-
-## 🌐 Live Streamlit Cloud Deployment
-
-You can deploy and access the interactive Streamlit analytics dashboard **live in the cloud with 24/7 access** from any device or browser:
-
-```
-┌─────────────────────────────────────────────────────────────────────────────┐
-│ 🚀 1-CLICK DEPLOYMENT ON STREAMLIT COMMUNITY CLOUD                          │
-│                                                                             │
-│ 1. Navigate to: https://share.streamlit.io                                  │
-│ 2. Sign in with GitHub                                                      │
-│ 3. Click "New app" and fill in:                                             │
-│    • Repository: ChigurupatiVenkatSaiKiran/AI-Driven-Network-Traffic-Anomaly-Detection │
-│    • Branch    : main                                                       │
-│    • Main path : dashboard.py                                               │
-│ 4. Click "Deploy!" — Your live dashboard URL will be generated instantly.   │
-└─────────────────────────────────────────────────────────────────────────────┘
-```
 
 ---
 
