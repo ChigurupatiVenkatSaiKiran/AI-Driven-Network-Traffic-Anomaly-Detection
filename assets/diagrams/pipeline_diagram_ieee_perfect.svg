@@ -1,0 +1,210 @@
+<svg width="880" height="780" viewBox="0 0 880 780" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif">
+<defs>
+  <marker id="arr-gray" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+    <path d="M1.5 1.5L8.5 5L1.5 8.5" fill="none" stroke="#64748B" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+  </marker>
+  <marker id="arr-blue" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+    <path d="M1.5 1.5L8.5 5L1.5 8.5" fill="none" stroke="#0284C7" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+  </marker>
+  <marker id="arr-orange" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+    <path d="M1.5 1.5L8.5 5L1.5 8.5" fill="none" stroke="#EA580C" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+  </marker>
+
+  <filter id="sh" x="-2%" y="-2%" width="104%" height="108%" filterUnits="userSpaceOnUse">
+    <feDropShadow dx="0" dy="2.5" stdDeviation="3" flood-color="#0F172A" flood-opacity="0.06"/>
+  </filter>
+
+  <linearGradient id="gNavy" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#0F172A"/><stop offset="50%" stop-color="#1E293B"/><stop offset="100%" stop-color="#0F172A"/></linearGradient>
+  <linearGradient id="gBlue" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#0284C7"/><stop offset="100%" stop-color="#38BDF8"/></linearGradient>
+  <linearGradient id="gOrange" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#EA580C"/><stop offset="100%" stop-color="#FB923C"/></linearGradient>
+  <linearGradient id="gPurple" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#7E22CE"/><stop offset="100%" stop-color="#C084FC"/></linearGradient>
+  <linearGradient id="gTeal" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#0D9488"/><stop offset="100%" stop-color="#2DD4BF"/></linearGradient>
+  <linearGradient id="gGreen" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#16A34A"/><stop offset="100%" stop-color="#4ADE80"/></linearGradient>
+</defs>
+
+<!-- Background -->
+<rect width="880" height="780" fill="#F8FAFC"/>
+
+<!-- TOP IEEE HEADER BANNER -->
+<rect x="24" y="16" width="832" height="48" rx="7" fill="url(#gNavy)" filter="url(#sh)"/>
+<text x="440" y="36" text-anchor="middle" font-size="12.5" font-weight="800" fill="#FFFFFF" letter-spacing="0.5">
+  IEEE END-TO-END PIPELINE · OFFLINE MODEL TRAINING VS. ONLINE REAL-TIME INFERENCE
+</text>
+<text x="440" y="52" text-anchor="middle" font-size="9.5" font-weight="500" fill="#94A3B8">
+  Batch Model Pre-Training · Feature Standardization · Concurrent Inference Passes (&lt; 2.5 ms) · SOC Telemetry
+</text>
+
+<!-- LEFT COLUMN: PHASE I OFFLINE TRAINING -->
+<g transform="translate(44, 76)">
+  <rect x="0" y="0" width="382" height="610" rx="8" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.2" filter="url(#sh)"/>
+  <rect x="0" y="0" width="382" height="34" rx="8" fill="url(#gBlue)"/>
+  <text x="191" y="22" text-anchor="middle" font-size="11" font-weight="800" fill="#FFFFFF">PHASE I: OFFLINE MODEL TRAINING</text>
+
+  <!-- Step 1 -->
+  <rect x="18" y="44" width="346" height="50" rx="6" fill="#F0F9FF" stroke="#BAE6FD" stroke-width="1"/>
+  <text x="191" y="63" text-anchor="middle" font-size="10" font-weight="700" fill="#0369A1">1. UNSW-NB15 Benchmark Ingestion</text>
+  <text x="191" y="80" text-anchor="middle" font-size="8.5" fill="#0284C7">Train 82,332 · Test 45,332 samples · 9 Attack Classes</text>
+
+  <line x1="191" y1="94" x2="191" y2="112" stroke="#0284C7" stroke-width="1.3" marker-end="url(#arr-blue)"/>
+
+  <!-- Step 2 -->
+  <rect x="18" y="112" width="346" height="52" rx="6" fill="#FAF5FF" stroke="#E9D5FF" stroke-width="1"/>
+  <text x="191" y="130" text-anchor="middle" font-size="10" font-weight="700" fill="#6B21A8">2. Feature Engineering &amp; Scaling</text>
+  <text x="191" y="146" text-anchor="middle" font-size="8.5" fill="#7E22CE">LabelEncoder · StandardScaler (μ=0, σ=1) · d=39 features</text>
+  <text x="191" y="157" text-anchor="middle" font-size="7.5" fill="#9333EA">Exports: scaler.pkl, label_encoders.pkl</text>
+
+  <line x1="191" y1="164" x2="191" y2="182" stroke="#0284C7" stroke-width="1.3" marker-end="url(#arr-blue)"/>
+
+  <!-- Step 3: Tri-Models -->
+  <rect x="18" y="182" width="346" height="170" rx="6" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1"/>
+  <text x="191" y="200" text-anchor="middle" font-size="10.5" font-weight="800" fill="#0F172A">3. Concurrent Model Training</text>
+
+  <!-- AE -->
+  <rect x="28" y="210" width="98" height="130" rx="5" fill="#FFFFFF" stroke="#0D9488" stroke-width="1"/>
+  <rect x="28" y="210" width="98" height="6" rx="5" fill="url(#gTeal)"/>
+  <text x="77" y="228" text-anchor="middle" font-size="9" font-weight="800" fill="#0F766E">Autoencoder</text>
+  <text x="77" y="244" text-anchor="middle" font-size="8" fill="#115E59">Normal (y=0)</text>
+  <text x="77" y="258" text-anchor="middle" font-size="8" fill="#115E59">39→128→8</text>
+  <text x="77" y="272" text-anchor="middle" font-size="8" fill="#115E59">MSE + σ=0.05</text>
+  <text x="77" y="286" text-anchor="middle" font-size="8" fill="#115E59">150 Epochs</text>
+  <rect x="36" y="312" width="82" height="20" rx="3" fill="#0D9488"/>
+  <text x="77" y="326" text-anchor="middle" font-size="8" font-weight="700" fill="#FFFFFF">89.44% Acc</text>
+
+  <!-- XGB -->
+  <rect x="142" y="210" width="98" height="130" rx="5" fill="#FFFFFF" stroke="#EA580C" stroke-width="1"/>
+  <rect x="142" y="210" width="98" height="6" rx="5" fill="url(#gOrange)"/>
+  <text x="191" y="228" text-anchor="middle" font-size="9" font-weight="800" fill="#C2410C">XGBoost</text>
+  <text x="191" y="244" text-anchor="middle" font-size="8" fill="#9A3412">GridSearch 27</text>
+  <text x="191" y="258" text-anchor="middle" font-size="8" fill="#9A3412">n_est=500, d=8</text>
+  <text x="191" y="272" text-anchor="middle" font-size="8" fill="#9A3412">lr = 0.20</text>
+  <text x="191" y="286" text-anchor="middle" font-size="8" fill="#9A3412">3-Fold Stratified</text>
+  <rect x="150" y="312" width="82" height="20" rx="3" fill="#EA580C"/>
+  <text x="191" y="326" text-anchor="middle" font-size="8" font-weight="700" fill="#FFFFFF">89.77% Acc</text>
+
+  <!-- IF -->
+  <rect x="256" y="210" width="98" height="130" rx="5" fill="#FFFFFF" stroke="#16A34A" stroke-width="1"/>
+  <rect x="256" y="210" width="98" height="6" rx="5" fill="url(#gGreen)"/>
+  <text x="305" y="228" text-anchor="middle" font-size="9" font-weight="800" fill="#15803D">IF Ensemble</text>
+  <text x="305" y="244" text-anchor="middle" font-size="8" fill="#166534">200 iTrees</text>
+  <text x="305" y="258" text-anchor="middle" font-size="8" fill="#166534">Unsupervised</text>
+  <text x="305" y="272" text-anchor="middle" font-size="8" fill="#166534">+ AE Meta-Feat</text>
+  <text x="305" y="286" text-anchor="middle" font-size="8" fill="#166534">Meta-Boost</text>
+  <rect x="264" y="312" width="82" height="20" rx="3" fill="#16A34A"/>
+  <text x="305" y="326" text-anchor="middle" font-size="8" font-weight="700" fill="#FFFFFF">90.43% Acc</text>
+
+  <line x1="191" y1="352" x2="191" y2="370" stroke="#0284C7" stroke-width="1.3" marker-end="url(#arr-blue)"/>
+
+  <!-- Step 4 -->
+  <rect x="18" y="370" width="346" height="50" rx="6" fill="#FEFCE8" stroke="#FDE047" stroke-width="1"/>
+  <text x="191" y="388" text-anchor="middle" font-size="10" font-weight="700" fill="#713F12">4. Threshold Calibration</text>
+  <text x="191" y="405" text-anchor="middle" font-size="8.5" fill="#854D0E">τ_AE = 0.3269 · τ_XGB = 0.5921 · τ_IF = 0.3450</text>
+
+  <line x1="191" y1="420" x2="191" y2="438" stroke="#0284C7" stroke-width="1.3" marker-end="url(#arr-blue)"/>
+
+  <!-- Step 5 -->
+  <rect x="18" y="438" width="346" height="50" rx="6" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1"/>
+  <text x="191" y="456" text-anchor="middle" font-size="10" font-weight="700" fill="#0F172A">5. Artefact Serialization</text>
+  <text x="191" y="473" text-anchor="middle" font-size="8" fill="#64748B">autoencoder.keras · xgboost_model.pkl · isolation_forest.pkl</text>
+
+  <line x1="191" y1="488" x2="191" y2="506" stroke="#0284C7" stroke-width="1.3" marker-end="url(#arr-blue)"/>
+
+  <!-- Step 6 -->
+  <rect x="18" y="506" width="346" height="50" rx="6" fill="#F0FDF4" stroke="#86EFAC" stroke-width="1"/>
+  <text x="191" y="524" text-anchor="middle" font-size="10" font-weight="800" fill="#15803D">6. Full Evaluation Metrics</text>
+  <text x="191" y="540" text-anchor="middle" font-size="8.5" font-weight="700" fill="#16A34A">ROC-AUC: 0.9835 · F1: 92.55% · Precision: 98.51%</text>
+
+  <rect x="18" y="564" width="346" height="36" rx="5" fill="#0F172A"/>
+  <text x="191" y="582" text-anchor="middle" font-size="8.5" font-weight="700" fill="#38BDF8">OFFLINE BATCH TRAINING: 150 EPOCHS</text>
+  <text x="191" y="594" text-anchor="middle" font-size="7.5" fill="#94A3B8">High-precision convergence on normal baseline manifold</text>
+</g>
+
+<!-- RIGHT COLUMN: PHASE II REAL-TIME INFERENCE -->
+<g transform="translate(454, 76)">
+  <rect x="0" y="0" width="382" height="610" rx="8" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.2" filter="url(#sh)"/>
+  <rect x="0" y="0" width="382" height="34" rx="8" fill="url(#gOrange)"/>
+  <text x="191" y="22" text-anchor="middle" font-size="11" font-weight="800" fill="#FFFFFF">PHASE II: REAL-TIME INFERENCE PIPELINE</text>
+
+  <!-- Step 1 -->
+  <rect x="18" y="44" width="346" height="50" rx="6" fill="#FFF7ED" stroke="#FDBA74" stroke-width="1"/>
+  <text x="191" y="63" text-anchor="middle" font-size="10" font-weight="700" fill="#C2410C">1. Live Traffic Capture (Scapy)</text>
+  <text x="191" y="80" text-anchor="middle" font-size="8.5" fill="#EA580C">Npcap NDIS packet hook · 5-tuple session aggregator</text>
+
+  <line x1="191" y1="94" x2="191" y2="112" stroke="#EA580C" stroke-width="1.3" marker-end="url(#arr-orange)"/>
+
+  <!-- Step 2 -->
+  <rect x="18" y="112" width="346" height="52" rx="6" fill="#FAF5FF" stroke="#E9D5FF" stroke-width="1"/>
+  <text x="191" y="130" text-anchor="middle" font-size="10" font-weight="700" fill="#6B21A8">2. Real-Time Vector Transformation</text>
+  <text x="191" y="146" text-anchor="middle" font-size="8.5" fill="#7E22CE">Applies pre-fit StandardScaler &amp; label_encoders.pkl</text>
+  <text x="191" y="157" text-anchor="middle" font-size="7.5" fill="#9333EA">Extracts 39-D vector x ∈ ℝ³⁹</text>
+
+  <line x1="191" y1="164" x2="191" y2="182" stroke="#EA580C" stroke-width="1.3" marker-end="url(#arr-orange)"/>
+
+  <!-- Step 3: Passes -->
+  <rect x="18" y="182" width="346" height="170" rx="6" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1"/>
+  <text x="191" y="200" text-anchor="middle" font-size="10.5" font-weight="800" fill="#0F172A">3. Concurrent Forward Passes</text>
+
+  <!-- Pass 1 -->
+  <rect x="28" y="210" width="98" height="130" rx="5" fill="#FFFFFF" stroke="#0D9488" stroke-width="1"/>
+  <rect x="28" y="210" width="98" height="6" rx="5" fill="url(#gTeal)"/>
+  <text x="77" y="228" text-anchor="middle" font-size="9" font-weight="800" fill="#0F766E">AE Residual</text>
+  <text x="77" y="246" text-anchor="middle" font-size="8" fill="#115E59">x̂ = Dec(Enc(x))</text>
+  <text x="77" y="266" text-anchor="middle" font-size="8" fill="#115E59">MSE Error ε</text>
+  <text x="77" y="286" text-anchor="middle" font-size="8" font-weight="600" fill="#0F766E">ε &gt; 0.3269?</text>
+  <rect x="36" y="312" width="82" height="20" rx="3" fill="#0D9488"/>
+  <text x="77" y="326" text-anchor="middle" font-size="8" font-weight="700" fill="#FFFFFF">Flag_AE: {0,1}</text>
+
+  <!-- Pass 2 -->
+  <rect x="142" y="210" width="98" height="130" rx="5" fill="#FFFFFF" stroke="#EA580C" stroke-width="1"/>
+  <rect x="142" y="210" width="98" height="6" rx="5" fill="url(#gOrange)"/>
+  <text x="191" y="228" text-anchor="middle" font-size="9" font-weight="800" fill="#C2410C">XGB Predict</text>
+  <text x="191" y="246" text-anchor="middle" font-size="8" fill="#9A3412">p = P(y=1|x)</text>
+  <text x="191" y="266" text-anchor="middle" font-size="8" fill="#9A3412">Leaf sum odds</text>
+  <text x="191" y="286" text-anchor="middle" font-size="8" font-weight="600" fill="#C2410C">p &gt; 0.5921?</text>
+  <rect x="150" y="312" width="82" height="20" rx="3" fill="#EA580C"/>
+  <text x="191" y="326" text-anchor="middle" font-size="8" font-weight="700" fill="#FFFFFF">Flag_XGB: {0,1}</text>
+
+  <!-- Pass 3 -->
+  <rect x="256" y="210" width="98" height="130" rx="5" fill="#FFFFFF" stroke="#16A34A" stroke-width="1"/>
+  <rect x="256" y="210" width="98" height="6" rx="5" fill="url(#gGreen)"/>
+  <text x="305" y="228" text-anchor="middle" font-size="9" font-weight="800" fill="#15803D">IF Isolation</text>
+  <text x="305" y="246" text-anchor="middle" font-size="8" fill="#166534">h(x) depth</text>
+  <text x="305" y="266" text-anchor="middle" font-size="8" fill="#166534">Meta blend</text>
+  <text x="305" y="286" text-anchor="middle" font-size="8" font-weight="600" fill="#15803D">s &gt; 0.3450?</text>
+  <rect x="264" y="312" width="82" height="20" rx="3" fill="#16A34A"/>
+  <text x="305" y="326" text-anchor="middle" font-size="8" font-weight="700" fill="#FFFFFF">Flag_IF: {0,1}</text>
+
+  <line x1="191" y1="352" x2="191" y2="370" stroke="#EA580C" stroke-width="1.3" marker-end="url(#arr-orange)"/>
+
+  <!-- Step 4 -->
+  <rect x="18" y="370" width="346" height="50" rx="6" fill="#FEFCE8" stroke="#FDE047" stroke-width="1"/>
+  <text x="191" y="388" text-anchor="middle" font-size="10" font-weight="700" fill="#713F12">4. Weighted Decision Fusion</text>
+  <text x="191" y="405" text-anchor="middle" font-size="8.5" fill="#854D0E">Weighted Ensemble: 0.35·AE + 0.40·XGB + 0.25·IF ≥ 0.50</text>
+
+  <line x1="191" y1="420" x2="191" y2="438" stroke="#EA580C" stroke-width="1.3" marker-end="url(#arr-orange)"/>
+
+  <!-- Step 5 -->
+  <rect x="18" y="438" width="346" height="50" rx="6" fill="#FEF2F2" stroke="#FCA5A5" stroke-width="1"/>
+  <text x="191" y="456" text-anchor="middle" font-size="10" font-weight="700" fill="#B91C1C">5. Threat Severity Grading</text>
+  <text x="191" y="473" text-anchor="middle" font-size="8.5" font-weight="700" fill="#991B1B">NORMAL · LOW · MEDIUM · HIGH · CRITICAL</text>
+
+  <line x1="191" y1="488" x2="191" y2="506" stroke="#EA580C" stroke-width="1.3" marker-end="url(#arr-orange)"/>
+
+  <!-- Step 6 -->
+  <rect x="18" y="506" width="346" height="50" rx="6" fill="#F0FDF4" stroke="#86EFAC" stroke-width="1"/>
+  <text x="191" y="524" text-anchor="middle" font-size="10" font-weight="800" fill="#15803D">6. Streamlit SOC Dashboard Sync</text>
+  <text x="191" y="540" text-anchor="middle" font-size="8.5" fill="#166534">Real-time KPI telemetry, packet streams &amp; log export</text>
+
+  <rect x="18" y="564" width="346" height="36" rx="5" fill="#0F172A"/>
+  <text x="191" y="582" text-anchor="middle" font-size="8.5" font-weight="700" fill="#38BDF8">REAL-TIME INFERENCE LATENCY: &lt; 2.5 ms</text>
+  <text x="191" y="594" text-anchor="middle" font-size="7.5" fill="#94A3B8">Sub-millisecond line-rate anomaly classification</text>
+</g>
+
+<!-- CAPTION -->
+<line x1="44" y1="702" x2="836" y2="702" stroke="#CBD5E1" stroke-width="0.8"/>
+<text x="440" y="720" text-anchor="middle" font-size="10" font-weight="800" fill="#0F172A">
+  Fig. 2.  Dual-Phase End-to-End Machine Learning Pipeline: Offline Batch Training vs. Online Real-Time Inference
+</text>
+<text x="440" y="736" text-anchor="middle" font-size="8.5" fill="#64748B">
+  Illustrates offline 150-epoch model pre-training, GridSearchCV optimization, real-time feature vector transformation, and weighted decision fusion.
+</text>
+</svg>

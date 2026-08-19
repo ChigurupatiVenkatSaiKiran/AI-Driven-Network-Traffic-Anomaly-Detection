@@ -262,6 +262,7 @@ def render_overview() -> None:
     # Architecture diagram
     st.markdown("#### 🏗️ System Architecture (IEEE Publication Standard)")
     arch_candidates = [
+        Config.PROJECT_ROOT / "assets" / "diagrams" / "architecture_diagram_ieee_perfect.svg",
         Config.PROJECT_ROOT / "assets" / "diagrams" / "architecture_diagram_ieee_masterpiece.svg",
         Config.PROJECT_ROOT / "assets" / "diagrams" / "architecture_diagram_top1_final.svg",
         Config.PROJECT_ROOT / "assets" / "diagrams" / "architecture_diagram.svg",
@@ -755,6 +756,7 @@ def render_model_performance() -> None:
 
     # IEEE Pipeline Diagram
     pipe_candidates = [
+        Config.PROJECT_ROOT / "assets" / "diagrams" / "pipeline_diagram_ieee_perfect.svg",
         Config.PROJECT_ROOT / "assets" / "diagrams" / "pipeline_diagram_ieee_masterpiece.svg",
         Config.PROJECT_ROOT / "assets" / "diagrams" / "pipeline_diagram_top1_final.svg",
         Config.PROJECT_ROOT / "assets" / "diagrams" / "pipeline_diagram.svg",
