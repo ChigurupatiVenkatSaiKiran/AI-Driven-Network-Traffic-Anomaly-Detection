@@ -134,17 +134,15 @@ The system was evaluated against all 9 principal attack categories in modern thr
 ### 4. Tri-Core Model Design Philosophy
 No single machine learning paradigm excels across both structured tabular reasoning and unsupervised zero-day isolation. We engineer a **Tri-Core Ensemble**:
 
-```
-┌────────────────────────────────────────────────────────────────────────────────────────┐
-│                              HYBRID AI TRI-CORE ROLES                                  │
-├───────────────────────┬──────────────────────────────────┬─────────────────────────────┤
-│ Model                 │ Learning Paradigm                │ Security Specialization     │
-├───────────────────────┼──────────────────────────────────┼─────────────────────────────┤
-│ 🔵 Deep Autoencoder   │ Semi-Supervised Representation   │ Zero-day & novel attacks    │
-│ 🟠 XGBoost Classifier │ Supervised Gradient Boosting     │ High-precision known events │
-│ 🟢 IF Ensemble        │ Spatial Isolation + Meta Boost   │ Multi-modal boundary blend  │
-└───────────────────────┴──────────────────────────────────┴─────────────────────────────┘
-```
+<div align="center">
+
+| Model Architecture | Learning Paradigm | Security Specialization | Primary Metric |
+| :--- | :--- | :--- | :---: |
+| 🔵 **Deep Autoencoder** | Semi-Supervised Representation | Zero-Day & Novel Attack Detection | `ROC-AUC 0.9767` |
+| 🟠 **XGBoost Classifier** | Supervised Gradient Boosting | High-Precision Known Threat Signatures | `Precision 98.79%` |
+| 🟢 **Isolation Forest** | Spatial Isolation + Meta Boost | Multi-Modal Decision Boundary Blending | `F1-Score 92.55%` ⭐ |
+
+</div>
 
 ---
 
@@ -196,21 +194,31 @@ The comprehensive training and real-time inference workflows are illustrated in 
 
 ### 〔 1 〕 Deep Denoising Autoencoder · Semi-Supervised Anomaly Detection
 
-<div align="center">
+```mermaid
+graph LR
+    subgraph Encoder [" 🔵 Encoder Layer "]
+        direction LR
+        IN["Input x̃ (39-D)<br/>+ Noise σ=0.05"] --> E1["Dense(128)<br/>ReLU"]
+        E1 --> E2["Dense(64)<br/>ReLU"]
+        E2 --> E3["Dense(32)<br/>ReLU"]
+    end
 
-```
-   ╔══════════════════════════════════════════════════════════════════════════════╗
-   ║                     ENCODER  →  LATENT SPACE  →  DECODER                  ║
-   ╠══════════════════════════════════════════════════════════════════════════════╣
-   ║  Input x̃  →  Dense(128) → Dense(64) → Dense(32) →  z (8-D)  Bottleneck   ║
-   ║                                                          ↓                 ║
-   ║  Output x̂ ←  Dense(128) ← Dense(64) ← Dense(32) ←────────                ║
-   ║                                                                            ║
-   ║  Gaussian Noise  σ = 0.05 injected on input  →  x̃ = x + ε, ε ~ N(0,σ²I) ║
-   ╚══════════════════════════════════════════════════════════════════════════════╝
-```
+    subgraph Latent [" 🟣 Latent Space "]
+        E3 --> Z["Bottleneck z (8-D)<br/>Compression Ratio: 4.88x"]
+    end
 
-</div>
+    subgraph Decoder [" 🟢 Decoder Layer "]
+        direction LR
+        Z --> D1["Dense(32)<br/>ReLU"]
+        D1 --> D2["Dense(64)<br/>ReLU"]
+        D2 --> D3["Dense(128)<br/>ReLU"]
+        D3 --> OUT["Reconstructed x̂ (39-D)<br/>Sigmoid"]
+    end
+
+    style Latent fill:#3B0764,stroke:#A855F7,stroke-width:2px,color:#fff
+    style Encoder fill:#0F172A,stroke:#0284C7,stroke-width:1.5px,color:#fff
+    style Decoder fill:#0F172A,stroke:#059669,stroke-width:1.5px,color:#fff
+```
 
 **Layer Progression:** $39 \to 128 \to 64 \to 32 \to 8 \to 32 \to 64 \to 128 \to 39$ · Activation: `ReLU` (hidden), `Sigmoid` (output)
 
@@ -223,11 +231,11 @@ $$\mathcal{L}_{\text{AE}}(\theta, \phi) = \frac{1}{N}\sum_{i=1}^{N} \bigl\|x_i -
 | Phase | Method | Data | Epochs | Objective |
 |:---:|---|---|:---:|---|
 | **Phase 1** | Unsupervised Pre-training | Normal traffic only — $y=0$ (34,206 samples) | 150 | Minimize $\mathcal{L}_{\text{AE}}$ |
-| **Phase 2** | Supervised Fine-tuning | Labelled train set (full) | 30 (frozen) + unfreeze | Minimize $\mathcal{L}_{\text{BCE}}$ |
+| **Phase 2** | Supervised Fine-tuning | Labelled train set (full) | 30 frozen + unfreeze | Minimize $\mathcal{L}_{\text{BCE}}$ |
 
 $$\mathcal{L}_{\text{BCE}}(y, \hat{y}) = -\bigl[ y\log(\hat{y}) + (1-y)\log(1-\hat{y}) \bigr]$$
 
-> **Detection Rule:** A flow is flagged as anomalous if its reconstruction error $\varepsilon = \|x - \hat{x}\|_2^2 > \tau_{\text{AE}} = 0.3269$
+> **Detection Rule:** A flow is flagged as anomalous if reconstruction error $\varepsilon = \|x - \hat{x}\|_2^2 > \tau_{\text{AE}} = 0.3269$
 
 ---
 
@@ -335,30 +343,27 @@ $$\hat{y}_{\text{final}} = \mathbb{I}\Bigl[\underbrace{0.35}_{\text{AE}}\cdot\ma
 </div>
 
 ```
-══════════════════════════════════════════════════════════════════════
+======================================================================
   Classification Reports — UNSW-NB15 Benchmark (175,341 Test Samples)
-══════════════════════════════════════════════════════════════════════
+======================================================================
 
-  ┌─ Deep Autoencoder Classifier (Semi-Supervised) ────────────────┐
-  │               precision    recall  f1-score   support           │
-  │      Normal       0.78      0.94      0.85      56,000          │
-  │     Anomaly       0.97      0.87      0.92     119,341          │
-  │     Accuracy                          0.89     175,341          │
-  └────────────────────────────────────────────────────────────────┘
+--- [1] Deep Autoencoder Classifier (Semi-Supervised) ---
+              precision    recall  f1-score   support
+      Normal       0.78      0.94      0.85     56,000
+     Anomaly       0.97      0.87      0.92    119,341
+    Accuracy                           0.89    175,341
 
-  ┌─ XGBoost Classifier (27-Grid Optimized) ───────────────────────┐
-  │               precision    recall  f1-score   support           │
-  │      Normal       0.77      0.98      0.86      56,000          │
-  │     Anomaly       0.99      0.86      0.92     119,341          │
-  │     Accuracy                          0.90     175,341          │
-  └────────────────────────────────────────────────────────────────┘
+--- [2] XGBoost Classifier (27-Grid Optimized) ---
+              precision    recall  f1-score   support
+      Normal       0.77      0.98      0.86     56,000
+     Anomaly       0.99      0.86      0.92    119,341
+    Accuracy                           0.90    175,341
 
-  ┌─ Isolation Forest Hybrid Ensemble ★ Best Overall ──────────────┐
-  │               precision    recall  f1-score   support           │
-  │      Normal       0.78      0.97      0.87      56,000          │
-  │     Anomaly       0.99      0.87      0.93     119,341          │
-  │     Accuracy                          0.90     175,341          │
-  └────────────────────────────────────────────────────────────────┘
+--- [3] Isolation Forest Hybrid Ensemble (★ Best Overall) ---
+              precision    recall  f1-score   support
+      Normal       0.78      0.97      0.87     56,000
+     Anomaly       0.99      0.87      0.93    119,341
+    Accuracy                           0.90    175,341
 ```
 
 
@@ -395,9 +400,9 @@ AI-Driven-Network-Traffic-Anomaly-Detection/
 │   └── config.toml                    # Dark theme, port, & server parameters
 │
 ├── 📂 assets/                         # Documentation & publication assets
-│   ├── 📂 diagrams/                   # High-resolution IEEE architecture & pipeline charts
-│   │   ├── architecture_diagram.jpg   # IEEE 5-layer system architecture
-│   │   └── pipeline_diagram.jpg       # IEEE training & inference pipeline
+│    ├── 📂 diagrams/                                    # Publication-grade IEEE vector diagrams
+│   ├── architecture_diagram_ieee_masterpiece.svg   # IEEE 6-layer system architecture (Vector SVG)
+│   └── pipeline_diagram_ieee_masterpiece.svg       # IEEE training & inference pipeline (Vector SVG)
 │   └── 📂 screenshots/                # 8 live dashboard panel captures
 │       ├── 01_overview.png
 │       ├── 02_evaluation_metrics.png
