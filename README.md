@@ -154,7 +154,7 @@ Below is the formal, publication-grade IEEE system architecture diagram detailin
 
 <div align="center">
 
-<img src="assets/diagrams/architecture_diagram_ieee_perfect.svg" alt="IEEE System Architecture Diagram — AI-Driven Network Traffic Anomaly Detection" width="100%"/>
+<img src="assets/diagrams/architecture_diagram_ieee_masterpiece.svg" alt="IEEE System Architecture Diagram — AI-Driven Network Traffic Anomaly Detection" width="100%"/>
 
 <p align="center">
 <b>Fig. 1.</b> High-Level IEEE System Architecture of the AI-Driven Network Traffic Anomaly Detection System, showing Layer 1 (Data Ingestion &amp; Acquisition), Layer 2 (Feature Engineering Pipeline), Layer 3 (Tri-Core Hybrid AI Model Core), Layer 4 (Prior-Adjusted Decision Threshold Engine), Layer 5 (Threat Severity Classification), and Layer 6 (SOC Analytics Dashboard).
@@ -178,7 +178,7 @@ The comprehensive training and real-time inference workflows are illustrated in 
 
 <div align="center">
 
-<img src="assets/diagrams/pipeline_diagram_ieee_perfect.svg" alt="IEEE End-to-End Machine Learning Pipeline Diagram" width="100%"/>
+<img src="assets/diagrams/pipeline_diagram_ieee_masterpiece.svg" alt="IEEE End-to-End Machine Learning Pipeline Diagram" width="100%"/>
 
 <p align="center">
 <b>Fig. 2.</b> IEEE End-to-End Machine Learning Pipeline: (Left) Offline Training Pipeline with 2-phase semi-supervised Autoencoder fine-tuning, 27-combination XGBoost GridSearchCV, and hybrid Isolation Forest training; (Right) Real-time Streaming Inference Pipeline with feature vector extraction, multi-model concurrent forward passes, threshold validation, and SOC dashboard synchronization.
