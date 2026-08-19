@@ -261,9 +261,12 @@ def render_overview() -> None:
 
     # Architecture diagram
     st.markdown("#### 🏗️ System Architecture (IEEE Publication Standard)")
-    arch_img = Config.PROJECT_ROOT / "assets" / "diagrams" / "architecture_diagram.jpg"
-    if arch_img.exists():
-        st.image(str(arch_img), caption="Fig. 1. High-Level IEEE System Architecture", use_container_width=True)
+    arch_svg = Config.PROJECT_ROOT / "assets" / "diagrams" / "architecture_diagram.svg"
+    arch_jpg = Config.PROJECT_ROOT / "assets" / "diagrams" / "architecture_diagram.jpg"
+    if arch_svg.exists():
+        st.image(str(arch_svg), caption="Fig. 1. High-Level IEEE System Architecture (Vector SVG)", use_container_width=True)
+    elif arch_jpg.exists():
+        st.image(str(arch_jpg), caption="Fig. 1. High-Level IEEE System Architecture", use_container_width=True)
     else:
         st.markdown("""
         ```
@@ -748,10 +751,14 @@ def render_model_performance() -> None:
         st.info("No training loss plot found. Run `python train.py` to generate.")
 
     # IEEE Pipeline Diagram
-    pipe_img = Config.PROJECT_ROOT / "assets" / "diagrams" / "pipeline_diagram.jpg"
-    if pipe_img.exists():
+    pipe_svg = Config.PROJECT_ROOT / "assets" / "diagrams" / "pipeline_diagram.svg"
+    pipe_jpg = Config.PROJECT_ROOT / "assets" / "diagrams" / "pipeline_diagram.jpg"
+    if pipe_svg.exists():
         st.markdown("#### 🔄 IEEE End-to-End Training & Inference Pipeline")
-        st.image(str(pipe_img), caption="Fig. 2. End-to-End IEEE Machine Learning Pipeline", use_container_width=True)
+        st.image(str(pipe_svg), caption="Fig. 2. End-to-End IEEE Machine Learning Pipeline (Vector SVG)", use_container_width=True)
+    elif pipe_jpg.exists():
+        st.markdown("#### 🔄 IEEE End-to-End Training & Inference Pipeline")
+        st.image(str(pipe_jpg), caption="Fig. 2. End-to-End IEEE Machine Learning Pipeline", use_container_width=True)
 
     # Model architecture description
     st.markdown("#### 🏗️ Model Architectures")

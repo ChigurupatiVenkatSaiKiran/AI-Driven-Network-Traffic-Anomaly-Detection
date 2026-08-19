@@ -154,10 +154,10 @@ Below is the formal, publication-grade IEEE system architecture diagram detailin
 
 <div align="center">
 
-![IEEE System Architecture Diagram](assets/diagrams/architecture_diagram.jpg)
+![IEEE System Architecture Diagram](assets/diagrams/architecture_diagram.svg)
 
 <p align="center">
-<b>Fig. 1.</b> High-Level IEEE System Architecture of the AI-Driven Network Traffic Anomaly Detection System, showing Layer 1 (Input Sources), Layer 2 (Feature Engineering Pipeline), Layer 3 (Hybrid AI Model Core), Layer 4 (Prior-Adjusted Decision Threshold Engine), and Layer 5 (Results & Dashboard Interface).
+<b>Fig. 1.</b> High-Level IEEE System Architecture of the AI-Driven Network Traffic Anomaly Detection System, showing Layer 1 (Data Ingestion &amp; Acquisition), Layer 2 (Feature Engineering Pipeline), Layer 3 (Tri-Core Hybrid AI Model Core), Layer 4 (Prior-Adjusted Decision Threshold Engine), Layer 5 (Threat Severity Classification), and Layer 6 (SOC Analytics Dashboard).
 </p>
 
 </div>
@@ -167,7 +167,8 @@ Below is the formal, publication-grade IEEE system architecture diagram detailin
 2. **Layer 2 — Feature Engineering Pipeline**: Cleans, standardizes, and encodes raw packets into a calibrated 39-dimensional vector using median imputation, label mapping, and variance filtering.
 3. **Layer 3 — Hybrid AI Model Core**: Deploys three parallel detection models operating across unsupervised reconstruction, tree boosting, and spatial isolation.
 4. **Layer 4 — Prior-Adjusted Threshold Engine**: Calibrates decision thresholds using empirical validation priors to combat dataset distribution shift.
-5. **Layer 5 — SOC Dashboard & Alerting**: Delivers continuous KPI telemetry, real-time confusion matrices, radar performance maps, and severity-graded incident tickets.
+5. **Layer 5 — Threat Severity Classification**: Categorizes incidents into NORMAL, LOW, MEDIUM, HIGH, and CRITICAL security classifications.
+6. **Layer 6 — SOC Dashboard & Alerting**: Delivers continuous KPI telemetry, real-time confusion matrices, radar performance maps, and severity-graded incident tickets.
 
 ---
 
@@ -177,10 +178,10 @@ The comprehensive training and real-time inference workflows are illustrated in 
 
 <div align="center">
 
-![IEEE End-to-End Pipeline Diagram](assets/diagrams/pipeline_diagram.jpg)
+![IEEE End-to-End Pipeline Diagram](assets/diagrams/pipeline_diagram.svg)
 
 <p align="center">
-<b>Fig. 2.</b> IEEE End-to-End Machine Learning Pipeline: (Left) Training Pipeline with 2-phase semi-supervised Autoencoder fine-tuning, 27-combination XGBoost GridSearchCV, and hybrid Isolation Forest training; (Right) Real-time Inference Pipeline with feature extraction, multi-model forward passes, threshold validation, and dashboard synchronization.
+<b>Fig. 2.</b> IEEE End-to-End Machine Learning Pipeline: (Left) Offline Training Pipeline with 2-phase semi-supervised Autoencoder fine-tuning, 27-combination XGBoost GridSearchCV, and hybrid Isolation Forest training; (Right) Real-time Streaming Inference Pipeline with feature vector extraction, multi-model concurrent forward passes, threshold validation, and SOC dashboard synchronization.
 </p>
 
 </div>
